@@ -1,6 +1,12 @@
-Team Name: Distinguished Donkey Aftermath
+**Team Name**  
+Distinguished Donkey Aftermath
 
-Members: Naser Alqimlas, Matthew Dinh, Jon Mcmillan, Will Shanks, Eleanor Hightower
+**Members**
+- Naser Alqimlas
+- Matthew Dinh
+- Jon McMillan
+- Will Shanks
+- Eleanor Hightower
 
 Description: This website will allow the user to search keywords and find related educational resources. 
 

@@ -1,9 +1,12 @@
+CSCI 3308 Group Project
+=======================
+
 Team Name  
-=========
+---------
 Distinguished Donkey Aftermath
 
 Members  
-=======
+-------
 - Naser Alqimlas
 - Matthew Dinh
 - Jon McMillan
@@ -11,7 +14,7 @@ Members
 - Eleanor Hightower
 
 Description  
-===========
+-----------
 People are always asking "What is the best resource for learning X?" Through
 this web app, we hope to "cut the learning curve on learning." In the modern
 age, there are so many educational resources, and it is difficult to know where
@@ -30,23 +33,23 @@ saving time for busy users. If a user finds a resource that is not in our
 database, they can add it under relevant keywords. 
 
 Vision  
-======
+------
 To create a web app that allows users to access the best resources for whatever
 the user is looking to learn.
 
 Motivation
-==========
+----------
 Cutting the learning curve on learning.
 
 Risks
-=====
+-----
 - Difficult to get resources
 - Could be spammed with bad resources
 - Development
   - Our dev environments diverge
 
 Risk Mitigation
-===============
+---------------
 - Let the users assign resources to keywords, and create the database for us
 - Limit posts by users, allow for flagging of bad resources
 - Development
@@ -54,20 +57,20 @@ Risk Mitigation
     setup the environment
 
 Version Control
-===============
+---------------
 This GitHub Repo
 
 Dev Method
-==========
+----------
 Agile
 
 Collaboration
-=============
+-------------
 Slack will be the main form of communication.  Whenever possible, we will
 integrate apps with Slack.
 
 Proposed Architecture
-=====================
+---------------------
 |   |   |
 |---|---|
 |Frontend| JavaScript with the React and redux frameworks |

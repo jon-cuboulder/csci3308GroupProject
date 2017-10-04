@@ -1,9 +1,4 @@
 ## Getting Started
-**Docker is required**
-
-`./setup.sh` will create a docker image.  
-`./run.sh` runs the docker image and takes an optional argument to pass to yarn
-
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

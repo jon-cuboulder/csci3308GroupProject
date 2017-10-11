@@ -37,4 +37,5 @@ sudo service apache2 restart
 # App dependencies
 #
 php composer.phar install
+cp .env.example .env
 php artisan key:generate

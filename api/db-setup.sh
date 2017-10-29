@@ -24,3 +24,5 @@ query2="CREATE DATABASE IF NOT EXISTS $db"
 query3="GRANT ALL ON $db.* TO $user"
 
 echo "$query1;$query2;$query3;" | mysql -u $DB_ADMIN_USERNAME -p$DB_ADMIN_PASSWORD
+
+php artisan migrate

@@ -4,7 +4,7 @@
 # Install PHP
 #
 sudo apt update && sudo apt upgrade -y
-sudo apt install php7.0 php7.0-mcrypt php7.0-gd php7.0-mbstring php7.0-xml php7.0-zip libapache2-mod-php7.0 apache2 -y
+sudo apt install php7.0 php7.0-mcrypt php7.0-gd php7.0-mbstring php7.0-xml php7.0-zip libapache2-mod-php7.0 apache2 php7.0-mysql -y
 
 #
 # Install composer

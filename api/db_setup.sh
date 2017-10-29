@@ -15,7 +15,7 @@ checkIfEmpty() {
 checkIfEmpty DB_DATABASE
 checkIfEmpty DB_HOST
 checkIfEmpty DB_USERNAME
-checkIfEmpty DB_ADMIN_PASSWORD
+checkIfEmpty DB_ADMIN_USERNAME
 
 db="\`$DB_DATABASE\`"
 user="\`$DB_USERNAME\`@\`$DB_HOST\`" 

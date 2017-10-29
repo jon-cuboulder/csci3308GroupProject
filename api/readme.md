@@ -17,7 +17,8 @@ to include them in your `.env` file.
 
 #### Setup the Database
 **MySQL MUST BE INSTALLED ALREADY**. It's not reasonable to script the install
-of the server due to the security precautions in the install.  You DO NOT need to create the app's database or user.
+of the server due to the security precautions in the install.  You DO NOT need
+to create the app's database or user.
 
 ```
 ./db-setup.sh

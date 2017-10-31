@@ -29,7 +29,7 @@ class AddUserToResourcesTable extends Migration
     {
         Schema::table('resources', function (Blueprint $table) {
             //
-            $table->dropForeign('user_id');
+            //$table->dropForeign('user_id');
         });
     }
 }

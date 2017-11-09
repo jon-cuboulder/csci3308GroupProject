@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 
-import {exampleReducer} from './Example';
-
-import Home from './components/Home';
+import searchReducer from './reducers/search';
+import Home from './containers/Home';
 
 const store = createStore(combineReducers({
-  example: exampleReducer
+  search: searchReducer
 }));
 
 class App extends Component {

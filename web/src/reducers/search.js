@@ -1,4 +1,4 @@
-import { SEARCH_CHANGE, SEARCH_SUBMIT } from '../actions/search';
+import { SEARCH_CHANGE, SEARCH_SUBMIT, SEARCH_RESULTS } from '../actions/search';
 
 const initialState = {
   qry: "",
@@ -11,6 +11,8 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, {qry: action.qry});
     case SEARCH_SUBMIT:
       return Object.assign({}, state, {qry: ""});
+    case SEARCH_RESULTS:
+      return Object.assign({}, state, {results: action.payload});
     default:
       return state;
   }

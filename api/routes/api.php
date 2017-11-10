@@ -14,6 +14,9 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware(['cors'])
-  ->get('/example', function (Request $request) {
-	    return \Response::json([ 'example' => 'success' ]);
-    });
+  ->get('/search', function (Request $request) {
+    return \Response::json([ 'results' => [[
+      'id' => 5,
+      'name' => 'React JS'
+    ]] ]);
+  });

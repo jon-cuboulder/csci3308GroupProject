@@ -16,7 +16,19 @@ const apiUrl = (uri, params) => {
 };
 
 export function search(query) {
-  const url = apiUrl('search', {q: query});
+  const url = apiUrl('topics', {q: query});
   return fetch(url, {mode: 'cors'})
+    .then(response => response.json());
+}
+
+export function register(name, email, pass) {
+  const url = apiUrl('users');
+  const payload = {
+    name,
+    email,
+    password: pass
+  };
+
+  return fetch(url, {mode: 'cors', method:'POST', body: JSON.stringify(payload) })
     .then(response => response.json());
 }

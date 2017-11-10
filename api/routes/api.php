@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +13,18 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::middleware(['cors'])
+  ->post('/users', function (Request $request) {
+    $data = $request->json()->all();
+    $user = new User;
+    $user->name = $data['name'];
+    $user->email = $data['email'];
+    $user->password = bcrypt($data['password']);
+    $user->save();
+
+    return \Response::json($user->toArray());
+  });
 
 Route::middleware(['cors'])
   ->get('/search', function (Request $request) {

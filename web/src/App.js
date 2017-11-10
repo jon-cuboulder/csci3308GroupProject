@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
 
-
-import searchReducer from './reducers/search';
+import reducers from './reducers';
 import Home from './containers/Home';
-import Register from './components/Register';
+import Register from './containers/Register';
 import Navbar from './components/Navbar';
 
-const store = createStore(combineReducers({
-  search: searchReducer
-}));
+import './App.css';
+
+const store = createStore(reducers);
 
 class App extends Component {
   render() {

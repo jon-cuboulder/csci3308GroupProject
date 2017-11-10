@@ -1,9 +1,19 @@
 import React from 'react';
 
-export default function Home({ qry, onSubmit, handleChange }) {
+export default function Home({ qry, handleSubmit, handleChange, results }) {
+  let search = '';
+  if(results.length) {
+    search = (<div>
+      <h2>Search Results</h2>
+      <ul>
+        {results.map(result => <li key={result.id}>{result.name}</li>)}
+      </ul>
+    </div>);
+  }
+
   return (<div className="container-fluid">
     <h1>What Do You Want to Learn Next?</h1>
-    <form onSubmit={onSubmit(qry)}>
+    <form onSubmit={handleSubmit(qry)}>
       <div className="row">
         <div className="col-lg-8 offset-lg-2">
           <div className="input-group">
@@ -16,5 +26,6 @@ export default function Home({ qry, onSubmit, handleChange }) {
         </div>
       </div>
     </form>
+    {search}
   </div>);
 }

@@ -27,7 +27,8 @@ Route::middleware(['cors'])
   });
 
 Route::middleware(['cors'])
-  ->get('/search', function (Request $request) {
+  ->get('/topics', function (Request $request) {
+    // I'm putting the query as /api/topics?q=<qry>
     return \Response::json([ 'results' => [[
       'id' => 5,
       'name' => 'React JS'

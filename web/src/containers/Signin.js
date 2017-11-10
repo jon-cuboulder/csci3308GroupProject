@@ -15,6 +15,9 @@ const mapDispatchToProps = dispatch => ({
       .then(json => {
         console.log(json);
         alert("Signed In");
+      })
+      .catch( err => {
+        alert(err);
       });
   },
   handleChange: (field) => (event) => {

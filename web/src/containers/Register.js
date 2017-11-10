@@ -15,6 +15,9 @@ const mapDispatchToProps = dispatch => ({
       .then(json => {
         console.log(json);
         alert("user created");
+      })
+      .catch( err => {
+        alert(err);
       });
   },
   handleChange: (field) => (event) => {

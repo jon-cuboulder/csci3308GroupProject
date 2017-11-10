@@ -15,7 +15,24 @@ use App\User;
 */
 
 Route::middleware(['cors'])
+  ->post('/login', function (Request $request) {
+    $data = $request->json()->all();
+    $qry = [
+      'email' => $data['email'],
+      'password' => $data['password']
+    ];
+
+    if(Auth::attempt($qry)) {
+      $user = User::where(['email' => $data['email']])->first();
+      return \Response::json($user->toArray());
+    }
+
+    return \Response::json(['err' => 'Unable to auth'], 401);
+  });
+
+Route::middleware(['cors'])
   ->post('/users', function (Request $request) {
+    // handler to create a user
     $data = $request->json()->all();
     $user = new User;
     $user->name = $data['name'];

@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function Home({ qry, handleSubmit, handleChange, results }) {
-  let search = '';
+function Results({ results }) {
+  let search = <div />;
   if(results.length) {
     search = (<div>
       <h2>Search Results</h2>
@@ -10,7 +10,10 @@ export default function Home({ qry, handleSubmit, handleChange, results }) {
       </ul>
     </div>);
   }
+ return search;
+}
 
+export default function Home({ qry, handleSubmit, handleChange, results }) {
   return (<div className="container-fluid">
     <h1>What Do You Want to Learn Next?</h1>
     <form onSubmit={handleSubmit(qry)}>
@@ -26,6 +29,6 @@ export default function Home({ qry, handleSubmit, handleChange, results }) {
         </div>
       </div>
     </form>
-    {search}
+    <Results results={results} />
   </div>);
 }

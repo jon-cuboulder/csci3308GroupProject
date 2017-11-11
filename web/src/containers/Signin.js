@@ -13,8 +13,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(signin.submit(form.email, form.pass));
     api.signin(form.email, form.pass)
       .then(json => {
-        console.log(json);
-        alert("Signed In");
+        console.log('Auth Success', json);
+        dispatch(signin.success(json));
       })
       .catch( err => {
         alert(err);

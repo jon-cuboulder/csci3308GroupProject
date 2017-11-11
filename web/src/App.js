@@ -10,7 +10,7 @@ import reducers from './reducers';
 import Home from './containers/Home';
 import Register from './containers/Register';
 import Signin from './containers/Signin';
-import Navbar from './components/Navbar';
+import Navbar from './containers/Navbar';
 
 import './App.css';
 

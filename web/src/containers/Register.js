@@ -16,6 +16,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(register.submit(form.name, form.email, form.pass));
     api.register(form.name, form.email, form.pass)
       .then(json => {
+        if(json.err || json.error) {
+          throw json.err;
+        }
+
         console.log("User Created", json);
         dispatch(auth.success(json));
       })

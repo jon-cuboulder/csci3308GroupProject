@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 /* Login Form
  * HTML was lifted from https://bootsnipp.com/snippets/0BVEA
  */
-export default function Register({handleSubmit, handleChange, form, isAuthed}) {
+export default function Signin({handleSubmit, handleChange, form, isAuthed}) {
   if (isAuthed) {
     return <Redirect to="/" />;
   }

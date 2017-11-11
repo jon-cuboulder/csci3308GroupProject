@@ -1,9 +1,14 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 /* Login Form
  * HTML was lifted from https://bootsnipp.com/snippets/0BVEA
  */
-export default function Register({handleSubmit, handleChange, form}) {
+export default function Register({handleSubmit, handleChange, form, isAuthed}) {
+  if (isAuthed) {
+    return <Redirect to="/" />;
+  }
+
   return (<div>
     <form className="form-horizontal" onSubmit={handleSubmit(form)}>
       <div className="row">

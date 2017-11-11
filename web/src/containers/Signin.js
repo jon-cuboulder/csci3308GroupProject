@@ -2,8 +2,10 @@ import { connect } from 'react-redux';
 import Signin from '../components/Signin';
 import * as api from '../api';
 import * as signin from '../actions/signin';
+import * as auth from '../actions/auth';
 
 const mapStateToProps = (state) => ({
+  isAuthed: !!state.auth,
   form: state.signin.form
 });
 
@@ -15,6 +17,7 @@ const mapDispatchToProps = dispatch => ({
       .then(json => {
         console.log('Auth Success', json);
         dispatch(signin.success(json));
+        dispatch(auth.success(json));
       })
       .catch( err => {
         alert(err);

@@ -1,13 +1,10 @@
-import { SIGNIN_SUCCESS } from '../actions/signin';
+import { AUTH_SUCCESS } from '../actions/auth';
 
-/* reducer for the form for creating a user */
-function authReducer(state = null, action) {
+export default function authReducer(state = null, action) {
   switch (action.type) {
-    case SIGNIN_SUCCESS:
+    case AUTH_SUCCESS:
       return Object.assign({}, action.payload);
     default:
       return state;
   }
 }
-
-export default authReducer;

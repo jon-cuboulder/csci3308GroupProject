@@ -1,17 +1,5 @@
 import React from 'react';
-
-function Results({ results }) {
-  let search = <div />;
-  if(results.length) {
-    search = (<div>
-      <h2>Search Results</h2>
-      <ul>
-        {results.map(result => <li key={result.id}>{result.name}</li>)}
-      </ul>
-    </div>);
-  }
- return search;
-}
+import Results from './SearchResults';
 
 export default function Home({ qry, handleSubmit, handleChange, results }) {
   return (<div className="container-fluid">

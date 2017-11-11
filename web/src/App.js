@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import {
   BrowserRouter as Router,
+  Switch,
   Route
 } from 'react-router-dom';
 
-import reducers from './reducers';
+import newStore from './store';
+import Navbar from './containers/Navbar';
+
+/* Routes */
 import Home from './containers/Home';
 import Register from './containers/Register';
 import Signin from './containers/Signin';
-import Navbar from './containers/Navbar';
+import Topic from './components/Topic';
+import PageNotFound from './components/PageNotFound';
 
 import './App.css';
 
-const store = createStore(reducers);
-
+const store = newStore();
 class App extends Component {
   render() {
     return (
@@ -24,9 +27,13 @@ class App extends Component {
           <div>
             <Navbar />
             <div className="container-fluid">
-              <Route exact path="/" component={Home} />
-              <Route path="/register" component={Register} />
-              <Route path="/signin" component={Signin} />
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/register" component={Register} />
+                <Route path="/signin" component={Signin} />
+                <Route path="/topics/:id" component={Topic} />
+                <Route component={PageNotFound} />
+              </Switch>
             </div>
           </div>
         </Router>

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { REGISTER_CHANGE, REGISTER_SUBMIT } from '../actions/register';
+import { REGISTER_CHANGE } from '../actions/register';
 
 const initialState = {
   name: '',

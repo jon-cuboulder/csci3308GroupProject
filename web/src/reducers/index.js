@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import searchReducer from './search';
+import authReducer from './auth';
 import signinReducer from './signin';
 import registerReducer from './register';
 
@@ -8,5 +9,6 @@ import registerReducer from './register';
 export default combineReducers({
   search: searchReducer,
   register: registerReducer,
-  signin: signinReducer
+  signin: signinReducer,
+  auth: authReducer
 });

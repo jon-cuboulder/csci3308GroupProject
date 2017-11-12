@@ -2,9 +2,12 @@ import { connect } from 'react-redux';
 import Home from '../components/Home';
 import * as search from '../actions/search';
 import * as api from '../api';
+import * as forms from '../actions/forms';
+
+const FORM_NAME = 'topics-search';
 
 const mapStateToProps = (state) => ({
-  qry: state.search.qry,
+  qry: state.form[FORM_NAME].qry,
   results: state.search.results
 });
 
@@ -20,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
         alert(err);
       });
   },
-  handleChange: (event) => dispatch(search.handleChange(event.target.value))
+  handleChange: forms.change(FORM_NAME, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

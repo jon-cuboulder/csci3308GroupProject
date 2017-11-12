@@ -4,13 +4,13 @@ import { Redirect } from 'react-router-dom';
 /* Login Form
  * HTML was lifted from https://bootsnipp.com/snippets/0BVEA
  */
-export default function Signin({handleSubmit, handleChange, form, isAuthed}) {
+export default function Signin({handleSubmit, handleChange, email, pass, isAuthed}) {
   if (isAuthed) {
     return <Redirect to="/" />;
   }
 
   return (<div>
-    <form className="form-horizontal" onSubmit={handleSubmit(form)}>
+    <form className="form-horizontal" onSubmit={handleSubmit(email, pass)}>
       <div className="row">
         <div className="col-md-3"></div>
         <div className="col-md-6">
@@ -26,7 +26,7 @@ export default function Signin({handleSubmit, handleChange, form, isAuthed}) {
           <div className="form-group">
             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
               <div className="input-group-addon" style={{width: '2.6rem'}}><i className="fa fa-at"></i></div>
-              <input type="text" className="form-control" 
+              <input type="text" className="form-control" value={email}
                 onChange={handleChange('email')} placeholder="you@example.com" />
             </div>
           </div>
@@ -41,7 +41,7 @@ export default function Signin({handleSubmit, handleChange, form, isAuthed}) {
             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
               <div className="input-group-addon" style={{width: "2.6rem"}}><i className="fa fa-key"></i></div>
               <input type="password" className="form-control" onChange={handleChange('pass')}
-                placeholder="Password" id="password" value={form.pass} />
+                placeholder="Password" id="password" value={pass} />
             </div>
           </div>
         </div>

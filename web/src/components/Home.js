@@ -8,7 +8,7 @@ export default function Home({ qry, handleSubmit, handleChange, results }) {
       <div className="row">
         <div className="col-lg-8 offset-lg-2">
           <div className="input-group">
-            <input type="text" className="form-control" onChange={handleChange}
+            <input type="text" className="form-control" onChange={handleChange('qry')}
               placeholder="Topic..." value={qry} />
             <div className="input-group-btn">
               <button type="submit" className="btn btn-primary">Search</button>

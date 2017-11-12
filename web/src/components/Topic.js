@@ -1,10 +1,9 @@
 import React from 'react';
 
-export default function Topic({ id }) {
-  console.log(arguments);
+export default function Topic({ id, name }) {
   return (
     <div>
-      <h2> Topic #{id}</h2>
+      <h2>{name}</h2>
     </div>
   );
 }

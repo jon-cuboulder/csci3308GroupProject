@@ -1,26 +1,25 @@
 import { connect } from 'react-redux';
-
-import Register from '../components/Register';
+import Signin from '../components/Signin';
 import * as api from '../api';
-import * as register from '../actions/register';
+import * as signin from '../actions/signin';
 import * as auth from '../actions/auth';
 
 const mapStateToProps = (state) => ({
   isAuthed: !!state.auth,
-  form: state.register.form
+  form: state.signin.form
 });
 
 const mapDispatchToProps = dispatch => ({
   handleSubmit: (form) => (event) => {
     event.preventDefault();
-    dispatch(register.submit(form.name, form.email, form.pass));
-    api.register(form.name, form.email, form.pass)
+    dispatch(signin.submit(form.email, form.pass));
+    api.signin(form.email, form.pass)
       .then(json => {
         if(json.err || json.error) {
           throw json.err;
         }
-
-        console.log("User Created", json);
+        console.log('Auth Success', json);
+        dispatch(signin.success(json));
         dispatch(auth.success(json));
       })
       .catch( err => {
@@ -28,8 +27,8 @@ const mapDispatchToProps = dispatch => ({
       });
   },
   handleChange: (field) => (event) => {
-    dispatch(register.formChange(field, event.target.value));
+    dispatch(signin.formChange(field, event.target.value));
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);

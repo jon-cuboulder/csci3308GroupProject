@@ -9,7 +9,8 @@ import {
 import reducers from './reducers';
 import Home from './containers/Home';
 import Register from './containers/Register';
-import Navbar from './components/Navbar';
+import Signin from './containers/Signin';
+import Navbar from './containers/Navbar';
 
 import './App.css';
 
@@ -25,6 +26,7 @@ class App extends Component {
             <div className="container-fluid">
               <Route exact path="/" component={Home} />
               <Route path="/register" component={Register} />
+              <Route path="/signin" component={Signin} />
             </div>
           </div>
         </Router>

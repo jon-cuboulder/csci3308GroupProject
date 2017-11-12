@@ -15,6 +15,9 @@ const mapDispatchToProps = dispatch => ({
     api.search(qry)
       .then(json => {
         dispatch(search.results(json.results));
+      })
+      .catch(err => {
+        alert(err);
       });
   },
   handleChange: (event) => dispatch(search.handleChange(event.target.value))

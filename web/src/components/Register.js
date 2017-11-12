@@ -1,9 +1,14 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 /* Create New User Form
  * HTML was lifted from https://bootsnipp.com/snippets/0BVEA
  */
-export default function Register({errEmail, errName, errPass, handleSubmit, handleChange, form}) {
+export default function Register({errEmail, errName, errPass, handleSubmit, handleChange, form, isAuthed}) {
+  if (isAuthed) {
+    return <Redirect to="/" />;
+  }
+
   return (<div>
     <form className="form-horizontal" onSubmit={handleSubmit(form)}>
       <div className="row">
@@ -22,7 +27,7 @@ export default function Register({errEmail, errName, errPass, handleSubmit, hand
             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
               <div className="input-group-addon" style={{width: '2.6rem'}}><i className="fa fa-user"></i></div>
               <input type="text" className="form-control" onChange={handleChange('name')}
-                placeholder="John Doe" autoFocus value={form.name} />
+                required placeholder="John Doe" autoFocus value={form.name} />
             </div>
           </div>
         </div>
@@ -41,7 +46,7 @@ export default function Register({errEmail, errName, errPass, handleSubmit, hand
             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
               <div className="input-group-addon" style={{width: '2.6rem'}}><i className="fa fa-at"></i></div>
               <input type="text" className="form-control" onChange={handleChange('email')}
-                placeholder="you@example.com" />
+                required placeholder="you@example.com" />
             </div>
           </div>
         </div>
@@ -60,7 +65,7 @@ export default function Register({errEmail, errName, errPass, handleSubmit, hand
             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
               <div className="input-group-addon" style={{width: "2.6rem"}}><i className="fa fa-key"></i></div>
               <input type="password" className="form-control" onChange={handleChange('pass')}
-                placeholder="Password" id="password" value={form.pass} />
+                required placeholder="Password" id="password" value={form.pass} />
             </div>
           </div>
         </div>

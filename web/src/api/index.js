@@ -21,12 +21,23 @@ export function search(query) {
     .then(response => response.json());
 }
 
-export function register(name, email, pass) {
+export function register(name, email, password) {
   const url = apiUrl('users');
   const payload = {
     name,
     email,
-    password: pass
+    password
+  };
+
+  return fetch(url, {mode: 'cors', method:'POST', body: JSON.stringify(payload) })
+    .then(response => response.json());
+}
+
+export function signin(email, password) {
+  const url = apiUrl('login');
+  const payload = {
+    email,
+    password
   };
 
   return fetch(url, {mode: 'cors', method:'POST', body: JSON.stringify(payload) })

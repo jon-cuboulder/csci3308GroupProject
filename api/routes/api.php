@@ -43,11 +43,5 @@ Route::middleware(['cors'])
     return \Response::json($user->toArray());
   });
 
-Route::middleware(['cors'])
-  ->get('/topics', function (Request $request) {
-    // I'm putting the query as /api/topics?q=<qry>
-    return \Response::json([ 'results' => [[
-      'id' => 5,
-      'name' => 'React JS'
-    ]] ]);
-  });
+Route::apiResource('/resources', 'resourceController');
+Route::apiResource('/topics', 'topicController');

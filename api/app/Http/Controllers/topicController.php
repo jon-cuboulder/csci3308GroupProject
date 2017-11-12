@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class topicController extends Controller
 {
+    public function __construct() {
+        $this->middleware('cors');
+    }
+
     public function index(){
         return json_encode(Topic::all());
     }

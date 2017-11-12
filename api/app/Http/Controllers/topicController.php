@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class topicController extends Controller
 {
     public function __construct() {
-        $this->middleware('cors');
+       $this->middleware('cors');
     }
 
     public function index(){
@@ -26,8 +26,6 @@ class topicController extends Controller
     public function show($id){
         return json_encode(Topic::find($id));
     }
-
-
 
     public function update($id){
 

@@ -16,6 +16,7 @@ class Resource extends Model
     protected $fillable = [
         'name',
         'abstract',
-        'votes'
+        'votes',
+        'user_id'
     ];
 }

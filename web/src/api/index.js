@@ -41,6 +41,10 @@ const post = (url, payload) => {
   return fetch(url, options).then(resp => resp.json());
 };
 
+export function topicGet(id) {
+  return get(`/topics/${id}`);
+}
+
 export function topicCreate(payload) {
   return post('/topics', payload);
 }
@@ -61,7 +65,6 @@ export function register(name, email, password) {
 }
 
 export function signin(email, password) {
-  const url = apiUrl('login');
   const payload = {
     email,
     password

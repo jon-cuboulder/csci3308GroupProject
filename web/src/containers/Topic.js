@@ -1,24 +1,35 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import Topic from '../components/Topic';
+import * as api from '../api';
+import * as topics from '../actions/topics';
 
 const mapStateToProps = (state, ownProps) => {
   let id = ownProps.match.params.id;
-  let name = '';
+  const topic = state.topics.byId[id] || {};
+  const isLoaded = !!topic.id;
+  const name = topic.name || '';
 
-  // Not requesting it.  Just looking if we can find it in the search
-  // results for now
-  if(state.search.results) {
-    state.search.results.forEach((r) => {
-      if(r.id === Number(id)) {
-        name = r.name;
-      }
-    });
-  }
-
-  return { id, name };
+  return { id, name, isLoaded};
 };
 
 const mapDispatchToProps = dispatch => ({
+  fetch: id => {
+    api.topicGet(id)
+      .then(json => dispatch(topics.load(json)));
+  }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Topic);
+class TopicFetch extends React.Component {
+  componentDidMount() {
+    if(!this.props.isLoaded) {
+      this.props.fetch(this.props.id);
+    }
+  }
+
+  render() {
+    return <Topic {...this.props} />;
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopicFetch);

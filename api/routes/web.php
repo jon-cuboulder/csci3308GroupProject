@@ -16,4 +16,5 @@ Route::get('/', function () {
 });
 
 
-Route::resource('resource', 'resourceController');
+Route::apiResource('resource', 'resourceController');
+Route::apiResource('topic', 'resourceController');

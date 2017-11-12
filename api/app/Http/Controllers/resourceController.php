@@ -13,10 +13,6 @@ class resourceController extends Controller
         return json_encode(Resource::all());
     }
 
-    // GET /resource/create
-    public function create(){
-
-    }
 
     // POST /resource
     // updates/creates resource
@@ -36,10 +32,6 @@ class resourceController extends Controller
         return json_encode(Resource::find($id));
     }
 
-    // GET /resource/{resource}/edit
-    public function edit($id){
-
-    }
 
     // PUT/PATCH /resource/{resource}
     public function update($id){

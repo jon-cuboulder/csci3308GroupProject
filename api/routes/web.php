@@ -14,7 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-Route::apiResource('resource', 'resourceController');
-Route::apiResource('topic', 'resourceController');

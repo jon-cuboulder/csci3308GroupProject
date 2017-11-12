@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\User;
 
 /*
@@ -12,18 +13,25 @@ use App\User;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
+
+// Handle preflight OPTIONS requests for CORS
+Route::options('{all}', function (Request $request, Response $response) {
+  $response->header('Access-Control-Allow-Origin', '*');
+  $response->header('Access-Control-Allow-Headers', 'origin, content-type, accept');
+  $response->header('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PATCH, DELETE');
+  return $response;
+})->where('all', '.*');
 
 Route::middleware(['cors'])
   ->post('/login', function (Request $request) {
-    $data = $request->json()->all();
     $qry = [
-      'email' => $data['email'],
-      'password' => $data['password']
+      'email' => $request->input('email'),
+      'password' => $request->input('password')
     ];
 
     if(Auth::attempt($qry)) {
-      $user = User::where(['email' => $data['email']])->first();
+      $user = User::where(['email' => $request->input('email')])->first();
       return \Response::json($user->toArray());
     }
 
@@ -33,11 +41,10 @@ Route::middleware(['cors'])
 Route::middleware(['cors'])
   ->post('/users', function (Request $request) {
     // handler to create a user
-    $data = $request->json()->all();
     $user = new User;
-    $user->name = $data['name'];
-    $user->email = $data['email'];
-    $user->password = bcrypt($data['password']);
+    $user->name = $request->input('name');
+    $user->email = $request->input('email');
+    $user->password = bcrypt($request->input('password'));
     $user->save();
 
     return \Response::json($user->toArray());

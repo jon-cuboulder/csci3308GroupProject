@@ -32,10 +32,10 @@ Route::middleware(['cors'])
 
     if(Auth::attempt($qry)) {
       $user = User::where(['email' => $request->input('email')])->first();
-      return \Response::json($user->toArray());
+      return response()->json($user->toArray());
     }
 
-    return \Response::json(['err' => 'Unable to auth'], 401);
+    return response()->json(['err' => 'Unable to auth'], 401);
   });
 
 Route::middleware(['cors'])
@@ -47,7 +47,7 @@ Route::middleware(['cors'])
     $user->password = bcrypt($request->input('password'));
     $user->save();
 
-    return \Response::json($user->toArray());
+    return response()->json($user->toArray());
   });
 
 Route::apiResource('/resources', 'resourceController');

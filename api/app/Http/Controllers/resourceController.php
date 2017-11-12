@@ -15,20 +15,19 @@ class resourceController extends Controller
 
     // GET /resource/create
     public function create(){
-        return "heelo";
+
     }
 
     // POST /resource
     // updates/creates resource
     public function store(Request $request){
-        //return $request->input('votes');
         Resource::updateOrCreate(
             ['name' => $request->input('name'),
                 'user_id' => $request->input('user_id')],
             ['abstract' => $request->input('abstract'),
                 'votes' => $request->input('votes')] // New resource therefore no one has voted for it yet
         );
-        return "succesfully added";
+        return "successfully added resource";
     }
 
     // GET /resource/{resource}
@@ -44,7 +43,7 @@ class resourceController extends Controller
 
     // PUT/PATCH /resource/{resource}
     public function update($id){
-        return "SUP";
+
     }
 
     // DELETE /resource/{resource}

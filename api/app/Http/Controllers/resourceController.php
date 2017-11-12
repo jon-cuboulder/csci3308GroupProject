@@ -17,13 +17,13 @@ class resourceController extends Controller
     // POST /resource
     // updates/creates resource
     public function store(Request $request){
-        Resource::updateOrCreate(
+        $newResource = Resource::updateOrCreate(
             ['name' => $request->input('name'),
                 'user_id' => $request->input('user_id')],
             ['abstract' => $request->input('abstract'),
                 'votes' => $request->input('votes')] // New resource therefore no one has voted for it yet
         );
-        return "successfully added resource";
+        return json_encode($newResource);
     }
 
     // GET /resource/{resource}

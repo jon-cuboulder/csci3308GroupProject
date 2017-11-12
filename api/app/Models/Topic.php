@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
-    protected $table = 'resources';
+    protected $table = 'topics';
     protected $fillable = [
         'name'
     ];

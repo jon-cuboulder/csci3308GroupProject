@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Topic;
+use Illuminate\Http\Request;
 
 class topicController extends Controller
 {
@@ -12,10 +12,10 @@ class topicController extends Controller
     }
 
     public function store(Request $request){
-        Topic::updateOrCreate(
+        $newtopic = Topic::updateOrCreate(
             ['name' => $request->input('name')]
         );
-        return "successfully added Topic";
+        return json_encode($newtopic);
     }
 
 

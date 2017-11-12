@@ -13,7 +13,7 @@ import Navbar from './containers/Navbar';
 import Home from './containers/Home';
 import Register from './containers/Register';
 import Signin from './containers/Signin';
-import Topic from './components/Topic';
+import Topic from './containers/Topic';
 import PageNotFound from './components/PageNotFound';
 
 import './App.css';

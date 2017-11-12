@@ -1,5 +1,6 @@
 import React from 'react';
 import Results from './SearchResults';
+import { Link } from 'react-router-dom';
 
 export default function Home({ qry, handleSubmit, handleChange, results }) {
   return (<div className="container-fluid">
@@ -17,6 +18,9 @@ export default function Home({ qry, handleSubmit, handleChange, results }) {
         </div>
       </div>
     </form>
+    <div className="text-center">
+      <Link to="/topics/create">create topic</Link>
+    </div>
     <Results results={results} />
   </div>);
 }

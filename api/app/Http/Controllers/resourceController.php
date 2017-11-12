@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class resourceController extends Controller
 {
+    public function __construct() {
+        $this->middleware('cors');
+    }
+
     // GET /resource
     //returns list of all entries in table
     public function index(){

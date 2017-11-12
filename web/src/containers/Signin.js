@@ -3,17 +3,21 @@ import Signin from '../components/Signin';
 import * as api from '../api';
 import * as signin from '../actions/signin';
 import * as auth from '../actions/auth';
+import * as forms from '../actions/forms';
+
+const FORM_NAME = 'account-signin';
 
 const mapStateToProps = (state) => ({
   isAuthed: !!state.auth,
-  form: state.signin.form
+  email: state.form[FORM_NAME].email,
+  pass: state.form[FORM_NAME].pass
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleSubmit: (form) => (event) => {
+  handleSubmit: (email, pass) => (event) => {
     event.preventDefault();
-    dispatch(signin.submit(form.email, form.pass));
-    api.signin(form.email, form.pass)
+    dispatch(signin.submit(email, pass));
+    api.signin(email, pass)
       .then(json => {
         if(json.err || json.error) {
           throw json.err;
@@ -26,9 +30,7 @@ const mapDispatchToProps = dispatch => ({
         alert(err);
       });
   },
-  handleChange: (field) => (event) => {
-    dispatch(signin.formChange(field, event.target.value));
-  }
+  handleChange: forms.change(FORM_NAME, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signin);

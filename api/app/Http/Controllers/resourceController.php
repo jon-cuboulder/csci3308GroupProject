@@ -14,7 +14,7 @@ class resourceController extends Controller
     // GET /resource
     //returns list of all entries in table
     public function index(){
-        return json_encode(Resource::all());
+        return response()->json(Resource::all());
     }
 
 
@@ -27,13 +27,13 @@ class resourceController extends Controller
             ['abstract' => $request->input('abstract'),
                 'votes' => $request->input('votes')] // New resource therefore no one has voted for it yet
         );
-        return json_encode($newResource);
+        return response()->json($newResource);
     }
 
     // GET /resource/{resource}
     // returns info on a specific resource
     public function show($id){
-        return json_encode(Resource::find($id));
+        return response()->json(Resource::find($id));
     }
 
 

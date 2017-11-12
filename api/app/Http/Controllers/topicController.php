@@ -8,23 +8,23 @@ use Illuminate\Http\Request;
 class topicController extends Controller
 {
     public function __construct() {
-       $this->middleware('cors');
+        $this->middleware('cors');
     }
 
     public function index(){
-        return json_encode(Topic::all());
+        return response()->json(Topic::all());
     }
 
     public function store(Request $request){
         $newtopic = Topic::updateOrCreate(
             ['name' => $request->input('name')]
         );
-        return json_encode($newtopic);
+        return response()->json($newtopic);
     }
 
 
     public function show($id){
-        return json_encode(Topic::find($id));
+        return response()->json(Topic::find($id));
     }
 
     public function update($id){

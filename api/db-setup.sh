@@ -19,10 +19,11 @@ checkIfEmpty DB_ADMIN_USERNAME
 
 db="\`$DB_DATABASE\`"
 user="\`$DB_USERNAME\`@\`$DB_HOST\`" 
+query0="DROP DATABASE IF EXISTS $db"
 query1="CREATE USER IF NOT EXISTS $user IDENTIFIED BY '$DB_PASSWORD'"
 query2="CREATE DATABASE IF NOT EXISTS $db" 
 query3="GRANT ALL ON $db.* TO $user"
 
-echo "$query1;$query2;$query3;" | mysql -u $DB_ADMIN_USERNAME -p$DB_ADMIN_PASSWORD
+echo "$query0;$query1;$query2;$query3;" | mysql -u $DB_ADMIN_USERNAME -p$DB_ADMIN_PASSWORD
 
-php artisan migrate
+php artisan migrate --seed

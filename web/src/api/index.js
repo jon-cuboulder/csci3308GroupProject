@@ -41,6 +41,10 @@ const post = (url, payload) => {
   return fetch(url, options).then(resp => resp.json());
 };
 
+export function resourceCreate(payload) {
+  return post('/resources', payload);
+}
+
 export function topicGet(id) {
   return get(`/topics/${id}`);
 }

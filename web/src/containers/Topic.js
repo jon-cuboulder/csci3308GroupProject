@@ -9,8 +9,9 @@ const mapStateToProps = (state, ownProps) => {
   const topic = state.topics.byId[id] || {};
   const isLoaded = !!topic.id;
   const name = topic.name || '';
+  const resources = topic.resources || [];
 
-  return { id, name, isLoaded};
+  return { id, name, isLoaded, resources };
 };
 
 const mapDispatchToProps = dispatch => ({

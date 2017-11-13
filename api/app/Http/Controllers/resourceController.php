@@ -12,32 +12,33 @@ class resourceController extends Controller
     }
 
     // GET /resource
-    //returns list of all entries in table
+    // returns list of all entries in table
     public function index(){
         return response()->json(Resource::all());
     }
 
 
     // POST /resource
-    // updates/creates resource
-    public function store(Request $request){
-        $newResource = Resource::updateOrCreate(
-            ['name' => $request->input('name'),
-                'user_id' => $request->input('user_id')],
-            ['abstract' => $request->input('abstract'),
-                'votes' => $request->input('votes')] // New resource therefore no one has voted for it yet
-        );
+    // creates resource
+    public function store(Request $request) {
+        $newResource = new Resource;
+        $newResource->name = $request->input('name');
+        $newResource->abstract = $request->input('abstract');
+        $newResource->user_id = $request->input('user_id');
+        $newResource->votes = 0;
+        $newResource->save();
+
         return response()->json($newResource);
     }
 
-    // GET /resource/{resource}
+    // GET /resource/{id}
     // returns info on a specific resource
     public function show($id){
         return response()->json(Resource::find($id));
     }
 
 
-    // PUT/PATCH /resource/{resource}
+    // PUT/PATCH /resource/{id}
     public function update($id){
 
     }

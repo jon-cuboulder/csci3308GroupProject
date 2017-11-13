@@ -16,6 +16,10 @@ const initialState = {
   'account-signin': {
     email: '',
     pass: ''
+  },
+  'resources-new': {
+    name: '',
+    abstract: ''
   }
 };
 

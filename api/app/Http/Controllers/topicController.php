@@ -24,7 +24,10 @@ class topicController extends Controller
 
 
     public function show($id){
-        return response()->json(Topic::find($id));
+        $topic = Topic::find($id);
+        // make sure resources are loaded so they are included in the response
+        $resources = $topic->resources;
+        return response()->json($topic);
     }
 
     public function update($id){

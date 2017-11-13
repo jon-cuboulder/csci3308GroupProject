@@ -10,4 +10,8 @@ class Topic extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function resources() {
+        return $this->hasMany('App\Models\Resource', 'topic_id');
+    }
 }

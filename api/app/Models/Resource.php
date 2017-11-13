@@ -17,6 +17,7 @@ class Resource extends Model
         'name',
         'abstract',
         'votes',
-        'user_id'
+        'user_id',
+        'topic_id'
     ];
 }

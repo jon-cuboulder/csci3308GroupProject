@@ -26,6 +26,7 @@ const mapDispatchToProps = dispatch => ({
         }
 
         console.log("User Created", json);
+        dispatch(forms.clear(FORM_NAME));
         dispatch(auth.success(json));
       })
       .catch( err => {

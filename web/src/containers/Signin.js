@@ -25,6 +25,7 @@ const mapDispatchToProps = dispatch => ({
           throw json.err;
         }
         console.log('Auth Success', json);
+        dispatch(forms.clear(FORM_NAME));
         dispatch(signin.success(json));
         dispatch(auth.success(json));
       })

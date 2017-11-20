@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 /* Login Form
  * HTML was lifted from https://bootsnipp.com/snippets/0BVEA
  */
-export default function Signin({handleSubmit, handleChange, email, pass, isAuthed}) {
+export default function Signin({handleSubmit, handleChange, email, pass, isAuthed, isLoading}) {
   if (isAuthed) {
     return <Redirect to="/" />;
   }
@@ -49,7 +49,7 @@ export default function Signin({handleSubmit, handleChange, email, pass, isAuthe
       <div className="row">
         <div className="col-md-3"></div>
         <div className="col-md-6">
-          <button type="submit" className="btn btn-success">
+          <button type="submit" className="btn btn-success" disabled={isLoading}>
             Sign In
           </button>
         </div>

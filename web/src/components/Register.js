@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 /* Create New User Form
  * HTML was lifted from https://bootsnipp.com/snippets/0BVEA
  */
-export default function Register({errEmail, errName, errPass, handleSubmit, handleChange, form, isAuthed}) {
+export default function Register({errEmail, errName, errPass, handleSubmit, handleChange, form, isAuthed, isLoading}) {
   if (isAuthed) {
     return <Redirect to="/" />;
   }
@@ -94,7 +94,7 @@ export default function Register({errEmail, errName, errPass, handleSubmit, hand
       <div className="row">
         <div className="col-md-3"></div>
         <div className="col-md-6">
-          <button type="submit" className="btn btn-success">
+          <button type="submit" className="btn btn-success" disabled={isLoading}>
             <i className="fa fa-user-plus"></i> Create Account
           </button>
         </div>

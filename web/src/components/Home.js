@@ -2,7 +2,7 @@ import React from 'react';
 import Results from './SearchResults';
 import { Link } from 'react-router-dom';
 
-export default function Home({ qry, handleSubmit, handleChange, results }) {
+export default function Home({ qry, handleSubmit, handleChange, results, isLoading }) {
   return (<div className="container-fluid">
     <h1>What Do You Want to Learn Next?</h1>
     <form onSubmit={handleSubmit(qry)}>
@@ -12,7 +12,9 @@ export default function Home({ qry, handleSubmit, handleChange, results }) {
             <input type="text" className="form-control" onChange={handleChange('qry')}
               placeholder="Topic..." value={qry} />
             <div className="input-group-btn">
-              <button type="submit" className="btn btn-primary">Search</button>
+              <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                Search
+              </button>
             </div>
           </div>
         </div>

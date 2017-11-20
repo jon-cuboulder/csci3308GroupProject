@@ -9,6 +9,7 @@ const FORM_NAME = 'account-signin';
 
 const mapStateToProps = (state) => ({
   isAuthed: !!state.auth,
+  isLoading: state.form[FORM_NAME]._loading,
   email: state.form[FORM_NAME].email,
   pass: state.form[FORM_NAME].pass
 });
@@ -16,6 +17,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   handleSubmit: (email, pass) => (event) => {
     event.preventDefault();
+    dispatch(forms.loading(FORM_NAME, true));
     dispatch(signin.submit(email, pass));
     api.signin(email, pass)
       .then(json => {
@@ -28,7 +30,8 @@ const mapDispatchToProps = dispatch => ({
       })
       .catch( err => {
         alert(err);
-      });
+      })
+      .then( l => dispatch(forms.loading(FORM_NAME, false)));
   },
   handleChange: forms.change(FORM_NAME, dispatch)
 });

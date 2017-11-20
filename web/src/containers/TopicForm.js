@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import TopicForm from '../components/TopicForm';
 import * as forms from '../actions/forms';
 import * as api from '../api';
+import * as topics from '../actions/topics';
 
 const FORM_NAME = 'topics-new';
 
@@ -15,6 +16,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(forms.loading(FORM_NAME, true));
     api.topicCreate( { name } )
       .then( json => {
+        dispatch(forms.clear(FORM_NAME));
+        dispatch(topics.load(json));
         history.push(`/topics/${json.id}`);
       })
       .catch( err => {

@@ -19,11 +19,12 @@ const mapDispatchToProps = dispatch => ({
     dispatch(forms.loading(FORM_NAME, true));
     api.resourceCreate({ topic_id, user_id, name, abstract })
       .then( json => {
-        console.log(json);
+        console.log('Resource Created', json);
+        dispatch(forms.clear(FORM_NAME));
         alert('succeeded');
       })
       .catch( err => {
-        console.error(err);
+        console.error('Resource Submit Failed', err);
         alert('submit failed');
       })
       .then( l => dispatch(forms.loading(FORM_NAME, false)));

@@ -19,6 +19,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(search.submit(qry));
     api.search(qry)
       .then(json => {
+        dispatch(forms.clear(FORM_NAME));
         dispatch(search.results(json));
       })
       .catch(err => {

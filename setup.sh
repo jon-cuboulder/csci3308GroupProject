@@ -26,7 +26,7 @@ sudo apt install php7.0 php7.0-mcrypt php7.0-gd php7.0-mbstring php7.0-xml php7.
 && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 && php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
 && php composer-setup.php \
-php -r "unlink('composer-setup.php');")
+&& php -r "unlink('composer-setup.php');")
 
 #
 # Setup Directories
@@ -69,7 +69,11 @@ checkIfEmpty() {
 checkIfEmpty DB_DATABASE
 checkIfEmpty DB_HOST
 checkIfEmpty DB_USERNAME
-checkIfEmpty DB_ADMIN_USERNAME
+
+if [ -z "$DB_ADMIN_PASSWORD" ]
+then
+  read -s -p "Enter MySQL root password: " DB_ADMIN_PASSWORD
+fi
 
 db="\`$DB_DATABASE\`"
 user="\`$DB_USERNAME\`@\`$DB_HOST\`" 

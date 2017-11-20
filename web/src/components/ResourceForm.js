@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ResourceForm({ user_id, topicID, handleSubmit, handleChange, name, abstract, auth }) {
+export default function ResourceForm({ user_id, topicID, handleSubmit, handleChange, name, abstract, auth, isLoading }) {
   if (!user_id) {
     console.log(auth);
     return <div>Please login to add a resource</div>;
@@ -20,7 +20,7 @@ export default function ResourceForm({ user_id, topicID, handleSubmit, handleCha
           onChange={handleChange('abstract')}
           id="abstract" placeholder="Resource abstract" />
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary" disabled={isLoading}>
         Add Resource
       </button>
     </form>

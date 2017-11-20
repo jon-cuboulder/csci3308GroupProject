@@ -7,6 +7,7 @@ import * as forms from '../actions/forms';
 const FORM_NAME = 'topics-search';
 
 const mapStateToProps = (state) => ({
+  isLoading: state.form[FORM_NAME]._loading,
   qry: state.form[FORM_NAME].qry,
   results: state.search.results
 });
@@ -14,6 +15,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   handleSubmit: (qry) => (event) => {
     event.preventDefault();
+    dispatch(forms.loading(FORM_NAME, true));
     dispatch(search.submit(qry));
     api.search(qry)
       .then(json => {
@@ -21,7 +23,8 @@ const mapDispatchToProps = dispatch => ({
       })
       .catch(err => {
         alert(err);
-      });
+      })
+      .then( l => dispatch(forms.loading(FORM_NAME, false)));
   },
   handleChange: forms.change(FORM_NAME, dispatch)
 });

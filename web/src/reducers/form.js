@@ -1,23 +1,31 @@
-import { FORMS_CHANGE } from '../actions/forms';
+import { FORMS_CHANGE, FORMS_LOADING } from '../actions/forms';
 
+/* There are better ways to initialize our forms but this makes it easier to
+ * understand for now
+ */
 const initialState = {
   'topics-search': { 
-    qry: '' 
+    _loading: false,
+    qry: ''
   },
   'topics-new': {
+    _loading: false,
     name: ''
   },
   'account-new': {
+    _loading: false,
     name: '',
     email: '',
     pass: '',
     pass2: ''
   },
   'account-signin': {
+    _loading: false,
     email: '',
     pass: ''
   },
   'resources-new': {
+    _loading: false,
     name: '',
     abstract: ''
   }
@@ -25,9 +33,14 @@ const initialState = {
 
 /* reducer for the form for creating a user */
 export default function reducer(state = initialState, action) {
+  let sp = null;
   switch (action.type) {
+    case FORMS_LOADING:
+      sp = Object.assign({}, state);
+      sp[action.form] = Object.assign({}, state[action.form], {_loading: action.payload});
+      return sp;
     case FORMS_CHANGE:
-      let sp =  Object.assign({}, state);
+      sp = Object.assign({}, state);
       sp[action.form] = Object.assign({}, state[action.form], action.payload);
       return sp;
     default:

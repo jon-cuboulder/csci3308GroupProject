@@ -4,7 +4,10 @@ import ResourceForm from '../containers/ResourceForm';
 export default function Topic({ id, name, resources }) {
   let list = <div>No resources</div>;
   if (resources.length > 0) {
-    list = <ul>{resources.map(r => <li key={r.id}>{r.name}</li>)}</ul>;
+    list = <ul>{resources.map(r => <li key={r.id}>
+        {r.name}
+        <div className="text-secondary">{r.abstract}</div>
+      </li>)}</ul>;
   }
 
   return (

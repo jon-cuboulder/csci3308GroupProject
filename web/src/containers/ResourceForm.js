@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import ResourceForm from '../components/ResourceForm';
+import * as topics from '../actions/topics';
 import * as forms from '../actions/forms';
 import * as api from '../api';
 
@@ -21,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
       .then( json => {
         console.log('Resource Created', json);
         dispatch(forms.clear(FORM_NAME));
-        alert('succeeded');
+        dispatch(topics.addResource(topic_id, json));
       })
       .catch( err => {
         console.error('Resource Submit Failed', err);

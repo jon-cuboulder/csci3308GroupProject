@@ -1,6 +1,31 @@
 CSCI 3308 Group Project
 =======================
 
+Setup Instructions
+------------------
+
+**MySQL MUST BE INSTALLED ALREADY**. It's not reasonable to script the install
+of the server due to the security precautions in the install.  You DO NOT need
+to create the app's database or user.
+
+```
+./setup.sh
+```
+
+If you want this to run without any interaction, you must set
+`DB_ADMIN_PASSWORD` in your environment to be your MySQL root user's password.
+
+Dev Instructions
+----------------
+The api server is always running thanks to apache.  The development server for
+the front end must be started using
+
+```
+cd web
+yarn start
+```
+
+
 Team Name  
 ---------
 Distinguished Donkey Aftermath

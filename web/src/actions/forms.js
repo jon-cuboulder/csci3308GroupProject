@@ -1,5 +1,12 @@
+/*
+ * Action Types
+ */
 export const FORMS_CHANGE = 'FORMS_CHANGE';
+export const FORMS_LOADING = 'FORMS_LOADING';
 
+/*
+ * Action Creators
+ */
 export const change = (form, dispatch) => field => event => {
   dispatch({
     type: FORMS_CHANGE,
@@ -9,3 +16,9 @@ export const change = (form, dispatch) => field => event => {
     form
   })
 };
+
+export const loading = (form, isLoading) => ({
+  type: FORMS_LOADING,
+  payload: isLoading,
+  form
+});

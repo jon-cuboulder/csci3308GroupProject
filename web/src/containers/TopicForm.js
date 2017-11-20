@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   handleSubmit: (name, history) => event => {
     event.preventDefault();
+    dispatch(forms.loading(FORM_NAME, true));
     api.topicCreate( { name } )
       .then( json => {
         history.push(`/topics/${json.id}`);
@@ -19,7 +20,8 @@ const mapDispatchToProps = dispatch => ({
       .catch( err => {
         console.error(err);
         alert('submit failed');
-      });
+      })
+      .then( l => dispatch(forms.loading(FORM_NAME, false)));
   },
   handleChange: forms.change(FORM_NAME, dispatch)
 });

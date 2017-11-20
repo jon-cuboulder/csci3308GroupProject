@@ -6,6 +6,7 @@ import * as api from '../api';
 const FORM_NAME = 'resources-new';
 
 const mapStateToProps = (state) => ({
+  isLoading: state.form[FORM_NAME]._loading,
   name: state.form[FORM_NAME].name || '',
   abstract: state.form[FORM_NAME].abstract || '',
   user_id: state.auth ? state.auth.user.id : '',
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   handleSubmit: (topic_id, user_id, name, abstract) => event => {
     event.preventDefault();
+    dispatch(forms.loading(FORM_NAME, true));
     api.resourceCreate({ topic_id, user_id, name, abstract })
       .then( json => {
         console.log(json);
@@ -23,7 +25,8 @@ const mapDispatchToProps = dispatch => ({
       .catch( err => {
         console.error(err);
         alert('submit failed');
-      });
+      })
+      .then( l => dispatch(forms.loading(FORM_NAME, false)));
   },
   handleChange: forms.change(FORM_NAME, dispatch)
 });

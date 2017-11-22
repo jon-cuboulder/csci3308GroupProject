@@ -17,7 +17,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
   fetch: id => {
     api.topicGet(id)
-      .then(json => dispatch(topics.load(json)));
+      .then(json => dispatch(topics.load(json)))
+      .catch(err => alert(err.error));
   }
 });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Topic;
+use App\Http\Resources\TopicResource;
 use Illuminate\Http\Request;
 use JWTAuth;
 
@@ -38,9 +39,7 @@ class topicController extends Controller
 
 
     public function show($id){
-        $topic = Topic::find($id);
-        // make sure resources are loaded so they are included in the response
-        $resources = $topic->resources;
+        $topic = new TopicResource(Topic::find($id));
         return response()->json($topic);
     }
 

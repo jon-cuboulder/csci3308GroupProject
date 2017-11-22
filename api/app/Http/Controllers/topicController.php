@@ -13,8 +13,16 @@ class topicController extends Controller
         $this->middleware('jwt.auth')->only(['store', 'update', 'destroy']);
     }
 
-    public function index(){
-        return response()->json(Topic::all());
+    public function index(Request $request){
+        if($qry = $request->query('q')) {
+            $qry .= '%';
+            $topics = Topic::where('name', 'like', $qry)
+                ->orderBy('name', 'asc')
+                ->get();
+        } else {
+            $topics = Topic::orderBy('name','asc')->get();
+        }
+        return response()->json($topics);
     }
 
     public function store(Request $request){

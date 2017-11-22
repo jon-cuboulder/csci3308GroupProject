@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use JWTAuth;
 
 class topicController extends Controller
 {
@@ -17,10 +18,14 @@ class topicController extends Controller
     }
 
     public function store(Request $request){
-        $newtopic = Topic::updateOrCreate(
-            ['name' => $request->input('name')]
-        );
-        return response()->json($newtopic);
+        $user = JWTAuth::parseToken()->authenticate();
+
+        $topic = new Topic;
+        $topic->name = $request->input('name');
+        $topic->user_id = $user->id;
+        $topic->save();
+
+        return response()->json($topic);
     }
 
 

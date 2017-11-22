@@ -27,7 +27,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(auth.success(json.token, email));
       })
       .catch( err => {
-        alert(err);
+        alert(err.error);
       })
       .then( l => dispatch(forms.loading(FORM_NAME, false)));
   },

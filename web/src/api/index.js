@@ -95,9 +95,19 @@ export function signin(email, password) {
   return post('login', payload);
 }
 
-export function voteCreate(resource_id) {
+export function voteUp(resource_id) {
   const payload = {
-    resource_id
+    resource_id,
+    type: 'up'
+  };
+
+  return post('votes', payload);
+}
+
+export function voteDown(resource_id) {
+  const payload = {
+    resource_id,
+    type: 'down'
   };
 
   return post('votes', payload);

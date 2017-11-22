@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Vote;
 use JWTAuth;
+use Illuminate\Support\Facades\Log;
 
 class VoteController extends Controller
 {
@@ -33,17 +34,22 @@ class VoteController extends Controller
     {
         $user = JWTAuth::parseToken()->authenticate();
         
-        $newVote = Vote::firstOrNew([
+        $vote = Vote::firstOrNew([
             'user_id' => $user->id,
             'resource_id' => $request->input('resource_id')
         ]);
 
-        if($newVote->id) {
+        if ($request->input('type') === 'down' && $vote->id) {
+            $vote->delete();
+            Log::info('vote deleted');
+        } else if ($request->input('type') === 'up' && !$vote->id) {
+            $vote->save();
+            Log::info('vote created');
+        } else {
             return response()->json([]);
         }
 
-        $newVote->save();
-        return response()->json($newVote);
+        return response()->json($vote);
     }
 
     /**

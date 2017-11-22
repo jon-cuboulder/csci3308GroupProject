@@ -22,10 +22,16 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   voteDown: (id, resourceId) => {
-    alert('down');
+    api.voteDown(resourceId)
+      .then(json => {
+        if(json.id) {
+          dispatch(topics.removeVote(id, resourceId))
+        }
+      })
+      .catch(err => alert(err.error));
   },
   voteUp: (id, resourceId) => {
-    api.voteCreate(resourceId)
+    api.voteUp(resourceId)
       .then(json => {
         if(json.id) {
           dispatch(topics.addVote(id, resourceId))

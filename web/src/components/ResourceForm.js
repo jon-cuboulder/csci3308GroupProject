@@ -1,13 +1,13 @@
 import React from 'react';
 
-export default function ResourceForm({ user_id, topicID, handleSubmit, handleChange, name, abstract, auth, isLoading }) {
-  if (!user_id) {
+export default function ResourceForm({ topicID, handleSubmit, handleChange, name, abstract, auth, isLoading }) {
+  if (!auth) {
     console.log(auth);
     return <div>Please login to add a resource</div>;
   }
 
   return (
-    <form onSubmit={handleSubmit(topicID, user_id, name, abstract)}>
+    <form onSubmit={handleSubmit(topicID, name, abstract)}>
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input type="text" className="form-control" value={name}

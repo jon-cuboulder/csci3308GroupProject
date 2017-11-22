@@ -9,6 +9,7 @@ class topicController extends Controller
 {
     public function __construct() {
         $this->middleware('cors');
+        $this->middleware('jwt.auth');
     }
 
     public function index(){

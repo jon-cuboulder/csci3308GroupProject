@@ -17,8 +17,11 @@ class Resource extends Model
         'name',
         'url',
         'abstract',
-        'votes',
         'user_id',
         'topic_id'
     ];
+
+    public function votes() {
+        return $this->hasMany('App\Models\Vote');
+    }
 }

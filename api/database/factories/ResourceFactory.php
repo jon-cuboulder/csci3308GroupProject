@@ -7,6 +7,5 @@ $factory->define(App\Models\Resource::class, function (Faker $faker) {
         'name' => $faker->bs(),
         'url' => $faker->url(),
         'abstract' => $faker->text(50),
-        'votes' => $faker->randomDigit()
     ];
 });

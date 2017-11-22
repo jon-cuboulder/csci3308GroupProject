@@ -15,7 +15,7 @@ class ResourceCollection extends Resource
     {
         $votes = 0;
         foreach($this->votes as $vote) {
-            if($vote->isNegative) {
+            if($vote->is_negative) {
                 $votes--;
             } else {
                 $votes++;

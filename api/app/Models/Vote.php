@@ -10,7 +10,7 @@ class Vote extends Model
     protected $fillable = [
         'resource_id',
         'user_id',
-        'isNegative'
+        'is_negative'
     ];
 }
 

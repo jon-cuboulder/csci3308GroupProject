@@ -94,3 +94,11 @@ export function signin(email, password) {
 
   return post('login', payload);
 }
+
+export function voteCreate(resource_id) {
+  const payload = {
+    resource_id
+  };
+
+  return post('votes', payload);
+}

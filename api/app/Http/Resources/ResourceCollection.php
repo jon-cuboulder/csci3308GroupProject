@@ -17,6 +17,7 @@ class ResourceCollection extends Resource
             'id' => $this->id,
             'name' => $this->name,
             'url' => $this->url,
+            'abstract' => $this->abstract,
             'votes' => count($this->votes),
             'user_id' => $this->user_id,
             'topic_id' => $this->topic_id

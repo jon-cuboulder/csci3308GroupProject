@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ResourceCollection;
 use App\Models\Resource;
 use Illuminate\Http\Request;
 use JWTAuth;
@@ -31,10 +32,9 @@ class resourceController extends Controller
         $newResource->abstract = $request->input('abstract');
         $newResource->user_id = $user->id;
         $newResource->topic_id = $request->input('topic_id');
-        $newResource->votes = 0;
         $newResource->save();
 
-        return response()->json($newResource);
+        return response()->json(new ResourceCollection($newResource));
     }
 
     // GET /resource/{id}

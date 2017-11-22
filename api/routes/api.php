@@ -46,5 +46,6 @@ Route::middleware(['cors'])
 Route::apiResources([
     '/resources' => 'resourceController',
     '/topics' => 'topicController',
-    '/users' => 'UserController'
+    '/users' => 'UserController',
+    '/votes' => 'VoteController'
 ]);

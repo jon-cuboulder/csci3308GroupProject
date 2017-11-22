@@ -19,6 +19,15 @@ const mapDispatchToProps = dispatch => ({
     api.topicGet(id)
       .then(json => dispatch(topics.load(json)))
       .catch(err => alert(err.error));
+  },
+  vote: (id, resourceId) => {
+    api.voteCreate(resourceId)
+      .then(json => {
+        if(json.id) {
+          dispatch(topics.addVote(id, resourceId))
+        }
+      })
+      .catch(err => alert(err.error));
   }
 });
 

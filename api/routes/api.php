@@ -43,17 +43,8 @@ Route::middleware(['cors'])
     return response()->json(compact('token'));
   });
 
-Route::middleware(['cors'])
-  ->post('/users', function (Request $request) {
-    // handler to create a user
-    $user = new User;
-    $user->name = $request->input('name');
-    $user->email = $request->input('email');
-    $user->password = bcrypt($request->input('password'));
-    $user->save();
-
-    return response()->json($user->toArray());
-  });
-
-Route::apiResource('/resources', 'resourceController');
-Route::apiResource('/topics', 'topicController');
+Route::apiResources([
+    '/resources' => 'resourceController',
+    '/topics' => 'topicController',
+    '/users' => 'UserController'
+]);

@@ -58,4 +58,4 @@ sudo service apache2 restart
 #
 # Setup DB
 #
-(cd api && ./db-setup.sh)
+(./db-setup.sh)

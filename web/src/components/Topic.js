@@ -1,15 +1,18 @@
 import React from 'react';
 import ResourceForm from '../containers/ResourceForm';
 
+function Resource({url, votes, abstract, name}) {
+  return (<div>
+    <span className="text-secondary">{votes} Votes</span>
+    <a className="ml-4" href={url}>{name}</a>
+    <div className="text-secondary">{abstract}</div>
+  </div>);
+}
+
 export default function Topic({ id, name, resources }) {
   let list = <div>No resources</div>;
   if (resources.length > 0) {
-    list = <ul>{resources.map(r => <li key={r.id}>
-        {r.name}
-        <div className="text-primary">{r.votes} Votes</div>
-        <div><a href={r.url}>{r.url}</a></div>
-        <div className="text-secondary">{r.abstract}</div>
-      </li>)}</ul>;
+    list = <ul>{resources.map(r => <li key={r.id}><Resource {...r} /></li>)}</ul>;
   }
 
   return (

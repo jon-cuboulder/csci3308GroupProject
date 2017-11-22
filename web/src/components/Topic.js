@@ -1,22 +1,13 @@
 import React from 'react';
 import ResourceForm from '../containers/ResourceForm';
-
-function Resource({url, votes, abstract, name, onClick}) {
-  return (<div>
-    <span className="text-secondary" onClick={onClick}>{votes} Votes</span>
-    <a className="ml-4" href={url}>{name}</a>
-    <div className="text-secondary">{abstract}</div>
-  </div>);
-}
+import Resource from '../containers/Resource';
 
 export default function Topic({ id, name, resources, vote }) {
   let list = <div>No resources</div>;
   if (resources.length > 0) {
     list = <ul>
       {resources.map(r => 
-        <li key={r.id}>
-          <Resource {...r} onClick={() => vote(id, r.id)}/>
-        </li>)}
+        <li key={r.id}> <Resource topicId={id} resourceId={r.id} /> </li>)}
       </ul>;
   }
 

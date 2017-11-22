@@ -6,9 +6,9 @@ function byIdReducer(state={}, action) {
     case TOPIC_LOAD:
       return Object.assign({}, state, { [action.payload.id]: action.payload });
     case RESOURCE_ADD:
-      const resources = [...state[action.topicId].resources];
-      resources.push(action.payload);
-      const topic = Object.assign({}, state[action.topicId], { resources } );
+      const resources = state[action.topicId].resources || [];
+      const topic = Object.assign({}, state[action.topicId], { resources: [...resources, action.payload] } );
+
       return Object.assign({}, state, { [action.topicId]: topic });
     default:
       return state;

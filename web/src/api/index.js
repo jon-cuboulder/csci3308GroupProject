@@ -33,7 +33,8 @@ const fetchJSON = (url, options) => {
   return fetch(url, options)
     .then(resp => {
       if (resp.status === 500) {
-        throw {error: "Server Error"};
+        let err = {error: "Server Error"};
+        throw err;
       }
       return resp.json();
     })

@@ -6,6 +6,8 @@ export default function Topic({ id, name, resources }) {
   if (resources.length > 0) {
     list = <ul>{resources.map(r => <li key={r.id}>
         {r.name}
+        <div className="text-primary">{r.votes} Votes</div>
+        <div><a href={r.url}>{r.url}</a></div>
         <div className="text-secondary">{r.abstract}</div>
       </li>)}</ul>;
   }

@@ -31,6 +31,7 @@ const initialState = {
   'resources-new': {
     _loading: false,
     name: '',
+    url: '',
     abstract: ''
   }
 };

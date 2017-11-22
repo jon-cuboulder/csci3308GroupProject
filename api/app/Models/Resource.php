@@ -15,6 +15,7 @@ class Resource extends Model
     protected $table = 'resources';
     protected $fillable = [
         'name',
+        'url',
         'abstract',
         'votes',
         'user_id',

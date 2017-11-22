@@ -27,6 +27,7 @@ class resourceController extends Controller
         
         $newResource = new Resource;
         $newResource->name = $request->input('name');
+        $newResource->url = $request->input('url');
         $newResource->abstract = $request->input('abstract');
         $newResource->user_id = $user->id;
         $newResource->topic_id = $request->input('topic_id');

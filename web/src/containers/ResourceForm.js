@@ -8,16 +8,15 @@ const FORM_NAME = 'resources-new';
 
 const mapStateToProps = (state) => ({
   isLoading: state.form[FORM_NAME]._loading,
-  name: state.form[FORM_NAME].name || '',
-  abstract: state.form[FORM_NAME].abstract || '',
+  form: state.form[FORM_NAME],
   auth: state.auth
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleSubmit: (topic_id, name, abstract) => event => {
+  handleSubmit: (topic_id, name, url, abstract) => event => {
     event.preventDefault();
     dispatch(forms.loading(FORM_NAME, true));
-    api.resourceCreate({ topic_id, name, abstract })
+    api.resourceCreate({ topic_id, name, url, abstract })
       .then( json => {
         console.log('Resource Created', json);
         dispatch(forms.clear(FORM_NAME));
@@ -25,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
       })
       .catch( err => {
         console.error('Resource Submit Failed', err);
-        alert('submit failed');
+        alert(err.error);
       })
       .then( l => dispatch(forms.loading(FORM_NAME, false)));
   },

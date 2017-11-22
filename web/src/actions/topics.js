@@ -2,7 +2,8 @@
  * Action Types
  */
 export const RESOURCE_ADD = 'RESOURCE_ADD';
-export const RESOURCE_VOTE = 'RESOURCE_VOTE';
+export const RESOURCE_VOTE_UP = 'RESOURCE_VOTE_UP';
+export const RESOURCE_VOTE_DOWN = 'RESOURCE_VOTE_DOWN';
 export const TOPIC_LOAD = 'TOPIC_LOAD';
 
 /*
@@ -25,7 +26,15 @@ export function load(payload) {
 
 export function addVote(topicId, resourceId) {
   return {
-    type: RESOURCE_VOTE,
+    type: RESOURCE_VOTE_UP,
+    topicId,
+    resourceId,
+  };
+}
+
+export function removeVote(topicId, resourceId) {
+  return {
+    type: RESOURCE_VOTE_DOWN,
     topicId,
     resourceId
   };

@@ -18,24 +18,29 @@ use App\User;
 // Handle preflight OPTIONS requests for CORS
 Route::options('{all}', function (Request $request, Response $response) {
   $response->header('Access-Control-Allow-Origin', '*');
-  $response->header('Access-Control-Allow-Headers', 'origin, content-type, accept');
+  $response->header('Access-Control-Allow-Headers', 'origin, content-type, accept, authorization');
   $response->header('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PATCH, DELETE');
   return $response;
 })->where('all', '.*');
 
+// https://github.com/tymondesigns/jwt-auth/wiki/Creating-Tokens
 Route::middleware(['cors'])
   ->post('/login', function (Request $request) {
-    $qry = [
-      'email' => $request->input('email'),
-      'password' => $request->input('password')
-    ];
+    // grab credentials from the request
+    $credentials = $request->only('email', 'password');
 
-    if(Auth::attempt($qry)) {
-      $user = User::where(['email' => $request->input('email')])->first();
-      return response()->json($user->toArray());
+    try {
+      // attempt to verify the credentials and create a token for the user
+      if (! $token = JWTAuth::attempt($credentials)) {
+        return response()->json(['error' => 'invalid_credentials'], 401);
+      }
+    } catch (JWTException $e) {
+      // something went wrong whilst attempting to encode the token
+      return response()->json(['error' => 'could_not_create_token'], 500);
     }
 
-    return response()->json(['err' => 'Unable to auth'], 401);
+    // all good so return the token
+    return response()->json(compact('token'));
   });
 
 Route::middleware(['cors'])

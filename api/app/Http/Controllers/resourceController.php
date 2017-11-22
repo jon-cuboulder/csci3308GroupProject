@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Resource;
 use Illuminate\Http\Request;
+use JWTAuth;
 
 class resourceController extends Controller
 {
     public function __construct() {
         $this->middleware('cors');
+        $this->middleware('jwt.auth');
     }
 
     // GET /resource
@@ -21,10 +23,12 @@ class resourceController extends Controller
     // POST /resource
     // creates resource
     public function store(Request $request) {
+        $user = JWTAuth::parseToken()->authenticate();
+        
         $newResource = new Resource;
         $newResource->name = $request->input('name');
         $newResource->abstract = $request->input('abstract');
-        $newResource->user_id = $request->input('user_id');
+        $newResource->user_id = $user->id;
         $newResource->topic_id = $request->input('topic_id');
         $newResource->votes = 0;
         $newResource->save();

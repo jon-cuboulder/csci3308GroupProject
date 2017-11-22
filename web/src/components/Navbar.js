@@ -13,10 +13,15 @@ function LoginLinks() {
 
 }
 
-export default function Navbar({ email }) {
+export default function Navbar({ email, signout }) {
   let links = <LoginLinks />;
   if(email) {
-    links = <span className="navbar-text">{email}</span>
+    links = (
+      <ul className="navbar-nav mr-auto">
+        <li className="nav-item">
+          <a className="nav-link" onClick={signout} href="#signout">{email}</a>
+        </li>
+      </ul>);
   }
 
   return (

@@ -16,29 +16,46 @@ const apiUrl = (uri, params) => {
 };
 
 
-const get = (url, queryParams) => {
-  url = apiUrl(url, queryParams);
+const fetchJSON = (url, options) => {
+  options = options || {};
+  options.mode = 'cors';
+
+  const authString = sessionStorage.getItem('auth');
+
   const headers = new Headers();
   headers.set('Content-Type', 'application/json');
-  const options = {
-    mode: 'cors',
-    headers
-  };
+  if (authString) {
+    const auth = JSON.parse(authString);
+    headers.set('Authorization', `Bearer ${auth.token}`);
+  }
+  options.headers = headers;
 
-  return fetch(url, options).then(resp => resp.json());
-};
+  return fetch(url, options)
+    .then(resp => {
+      if (resp.status === 500) {
+        throw {error: "Server Error"};
+      }
+      return resp.json();
+    })
+    .then(json => {
+      if(json.error) {
+        throw json;
+      }
+
+      return json;
+    });
+}
+
+const get = (url, queryParams) => fetchJSON(apiUrl(url, queryParams), null)
 
 const post = (url, payload) => {
   url = apiUrl(url);
-  const headers = new Headers();
-  headers.set('Content-Type', 'application/json');
   const options = {
-    mode: 'cors',
     method: 'POST',
-    headers: headers,
     body: JSON.stringify(payload)
   };
-  return fetch(url, options).then(resp => resp.json());
+
+  return fetchJSON(url, options);
 };
 
 export function resourceCreate(payload) {

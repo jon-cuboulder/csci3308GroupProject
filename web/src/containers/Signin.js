@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import Signin from '../components/Signin';
 import * as api from '../api';
-import * as signin from '../actions/signin';
 import * as auth from '../actions/auth';
 import * as forms from '../actions/forms';
 
@@ -18,16 +17,14 @@ const mapDispatchToProps = dispatch => ({
   handleSubmit: (email, pass) => (event) => {
     event.preventDefault();
     dispatch(forms.loading(FORM_NAME, true));
-    dispatch(signin.submit(email, pass));
     api.signin(email, pass)
       .then(json => {
         if(json.err || json.error) {
-          throw json.err;
+          throw json.error;
         }
         console.log('Auth Success', json);
         dispatch(forms.clear(FORM_NAME));
-        dispatch(signin.success(json));
-        dispatch(auth.success(json));
+        dispatch(auth.success(json.token, email));
       })
       .catch( err => {
         alert(err);

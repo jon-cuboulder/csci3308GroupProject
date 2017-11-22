@@ -10,15 +10,14 @@ const mapStateToProps = (state) => ({
   isLoading: state.form[FORM_NAME]._loading,
   name: state.form[FORM_NAME].name || '',
   abstract: state.form[FORM_NAME].abstract || '',
-  user_id: state.auth ? state.auth.user.id : '',
   auth: state.auth
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleSubmit: (topic_id, user_id, name, abstract) => event => {
+  handleSubmit: (topic_id, name, abstract) => event => {
     event.preventDefault();
     dispatch(forms.loading(FORM_NAME, true));
-    api.resourceCreate({ topic_id, user_id, name, abstract })
+    api.resourceCreate({ topic_id, name, abstract })
       .then( json => {
         console.log('Resource Created', json);
         dispatch(forms.clear(FORM_NAME));

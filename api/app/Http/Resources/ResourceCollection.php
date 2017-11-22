@@ -13,12 +13,20 @@ class ResourceCollection extends Resource
      */
     public function toArray($request)
     {
+        $votes = 0;
+        foreach($this->votes as $vote) {
+            if($vote->isNegative) {
+                $votes--;
+            } else {
+                $votes++;
+            }
+        }
         return [
             'id' => $this->id,
             'name' => $this->name,
             'url' => $this->url,
             'abstract' => $this->abstract,
-            'votes' => count($this->votes),
+            'votes' => $votes,
             'user_id' => $this->user_id,
             'topic_id' => $this->topic_id
         ];

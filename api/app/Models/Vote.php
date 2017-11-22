@@ -9,7 +9,8 @@ class Vote extends Model
     protected $table = 'votes';
     protected $fillable = [
         'resource_id',
-        'user_id'
+        'user_id',
+        'isNegative'
     ];
 }
 

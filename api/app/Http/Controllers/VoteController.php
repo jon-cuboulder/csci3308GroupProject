@@ -39,17 +39,12 @@ class VoteController extends Controller
             'resource_id' => $request->input('resource_id')
         ]);
 
-        if ($request->input('type') === 'down' && $vote->id) {
-            $vote->delete();
-            Log::info('vote deleted');
-        } else if ($request->input('type') === 'up' && !$vote->id) {
-            $vote->save();
-            Log::info('vote created');
+        if ($request->input('type') === 'down') {
+            return $this->voteDown($vote);
         } else {
-            return response()->json([]);
+            return $this->voteUp($vote);
         }
 
-        return response()->json($vote);
     }
 
     /**
@@ -84,5 +79,37 @@ class VoteController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function voteUp($vote) {
+        if ($vote->id && !$vote->isNegative) {
+            Log::info("Already voted up");
+            return response()->json([]);
+        } else if ($vote->id && $vote->isNegative) {
+            Log::info("Removing down vote");
+            $vote->delete();
+        } else {
+            Log::info("Adding up vote");
+            $vote->isNegative = false;
+            $vote->save();
+        }
+
+        return response()->json($vote);
+    }
+
+    private function voteDown($vote) {
+        if ($vote->id && $vote->isNegative) {
+            Log::info("Already voted down");
+            return response()->json([]);
+        } else if ($vote->id && !$vote->isNegative) {
+            Log::info("Removing up vote");
+            $vote->delete();
+        } else {
+            Log::info("Adding down vote");
+            $vote->isNegative = true;
+            $vote->save();
+        }
+
+        return response()->json($vote);
     }
 }

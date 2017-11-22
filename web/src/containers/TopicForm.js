@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
       })
       .catch( err => {
         console.error(err);
-        alert('submit failed');
+        alert(err.error);
       })
       .then( l => dispatch(forms.loading(FORM_NAME, false)));
   },

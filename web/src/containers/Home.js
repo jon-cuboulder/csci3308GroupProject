@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(search.results(json));
       })
       .catch(err => {
-        alert(err);
+        alert(err.error);
       })
       .then( l => dispatch(forms.loading(FORM_NAME, false)));
   },

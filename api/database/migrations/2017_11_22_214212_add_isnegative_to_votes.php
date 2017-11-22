@@ -14,7 +14,7 @@ class AddIsnegativeToVotes extends Migration
     public function up()
     {
         Schema::table('votes', function (Blueprint $table) {
-            $table->boolean('isNegative');
+            $table->boolean('is_negative');
         });
     }
 
@@ -26,7 +26,7 @@ class AddIsnegativeToVotes extends Migration
     public function down()
     {
         Schema::table('votes', function (Blueprint $table) {
-            $table->dropColumn('isNegative');
+            $table->dropColumn('is_negative');
         });
     }
 }

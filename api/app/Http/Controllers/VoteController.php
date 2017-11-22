@@ -82,15 +82,15 @@ class VoteController extends Controller
     }
 
     private function voteUp($vote) {
-        if ($vote->id && !$vote->isNegative) {
+        if ($vote->id && !$vote->is_negative) {
             Log::info("Already voted up");
             return response()->json([]);
-        } else if ($vote->id && $vote->isNegative) {
+        } else if ($vote->id && $vote->is_negative) {
             Log::info("Removing down vote");
             $vote->delete();
         } else {
             Log::info("Adding up vote");
-            $vote->isNegative = false;
+            $vote->is_negative = false;
             $vote->save();
         }
 
@@ -98,15 +98,15 @@ class VoteController extends Controller
     }
 
     private function voteDown($vote) {
-        if ($vote->id && $vote->isNegative) {
+        if ($vote->id && $vote->is_negative) {
             Log::info("Already voted down");
             return response()->json([]);
-        } else if ($vote->id && !$vote->isNegative) {
+        } else if ($vote->id && !$vote->is_negative) {
             Log::info("Removing up vote");
             $vote->delete();
         } else {
             Log::info("Adding down vote");
-            $vote->isNegative = true;
+            $vote->is_negative = true;
             $vote->save();
         }
 

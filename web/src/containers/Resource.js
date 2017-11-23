@@ -18,6 +18,7 @@ const mapStateToProps = (state, ownProps) => {
     votes: resource.votes,
     abstract: resource.abstract,
     name: resource.name,
+    comments: resource.comments || [],
     isCommenting: state.form.toggles.comment === resourceId
   };
 };

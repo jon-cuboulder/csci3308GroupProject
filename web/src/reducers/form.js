@@ -29,6 +29,10 @@ const initialState = {
     email: '',
     pass: ''
   },
+  'resources-comment': {
+    _loading: false,
+    comment: ''
+  },
   'resources-new': {
     _loading: false,
     name: '',

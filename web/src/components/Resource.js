@@ -1,23 +1,13 @@
 import React from 'react';
-
-function CommentForm({ toggleComment }) {
-  return (<form onSubmit={(e) => e.preventDefault()}>
-    <textarea className="form-control" placeholder="Comment..." autoFocus />
-    <div className="mt-3">
-      <button type="button" className="btn btn-outline-secondary mr-3"
-        onClick={() => toggleComment(null)}>
-        Cancel
-      </button>
-      <button type="submit" className="btn btn-success">
-        <span className="fa fa-plus mr-2"/>
-        Add Comment
-      </button>
-    </div>
-  </form>);
-}
+import CommentForm from '../containers/CommentForm';
 
 // Resource list item in the topic view.
-export default function Resource({topicId, resourceId, url, votes, abstract, name, voteUp, voteDown, isCommenting, toggleComment}) {
+export default function Resource({topicId, resourceId, url, votes, abstract, name, voteUp, voteDown, isCommenting, toggleComment, comments}) {
+  var options = {  
+    weekday: "long", year: "numeric", month: "short",  
+    day: "numeric", hour: "2-digit", minute: "2-digit"  
+  };  
+
   return (<div>
     <div className="row">
       <div className="col-sm">
@@ -37,8 +27,16 @@ export default function Resource({topicId, resourceId, url, votes, abstract, nam
         <a className="font-weight-bold" href={url}>{name}</a>
         <div className="mb-5">{abstract}</div>
         <ul className="list-group list-group-flush">
+          { comments.map(c => 
+            <li className="list-group-item bg-light">
+              <span className="fa fa-comment mr-2" /> {c.text}
+              <div className="font-italic">
+                {c.user.name} on {(new Date(c.created_at.date)).toLocaleTimeString("en-us", options)}
+              </div>
+            </li>
+            ) }
           <li className="list-group-item">
-            { isCommenting ? <CommentForm toggleComment={toggleComment} /> :
+            { isCommenting ? <CommentForm resourceId={resourceId} /> :
             <a href="#comment" className="text-secondary" onClick={() => toggleComment(resourceId)}>
               Add a comment
             </a>}

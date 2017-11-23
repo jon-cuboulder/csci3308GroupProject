@@ -11,6 +11,10 @@ class Vote extends Model
         'resource_id',
         'user_id',
         'is_negative'
-    ];
+      ];
+
+    public function resources() {
+      return $this->belongsTo("App\Models\Resource", "resource_id", "id");
+    }
 }
 

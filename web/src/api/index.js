@@ -99,6 +99,10 @@ export function signin(email, password) {
   return post('login', payload);
 }
 
+export function usersGet(id) {
+  return get(`users/${id}`);
+};
+
 export function voteUp(resource_id) {
   const payload = {
     resource_id,

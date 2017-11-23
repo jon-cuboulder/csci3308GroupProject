@@ -21,6 +21,10 @@ class Resource extends Model
         'topic_id'
     ];
 
+    public function comments() {
+        return $this->hasMany('App\Models\Comment');
+    }
+
     public function votes() {
         return $this->hasMany('App\Models\Vote');
     }

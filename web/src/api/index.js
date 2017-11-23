@@ -59,6 +59,10 @@ const post = (url, payload) => {
   return fetchJSON(url, options);
 };
 
+export function commentCreate(payload) {
+  return post('/comments', payload);
+}
+
 export function resourceCreate(payload) {
   return post('/resources', payload);
 }

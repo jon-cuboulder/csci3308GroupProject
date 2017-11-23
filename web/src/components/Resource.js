@@ -1,12 +1,8 @@
 import React from 'react';
-import CommentForm from '../containers/CommentForm';
+import CommentList from '../containers/CommentList';
 
 // Resource list item in the topic view.
-export default function Resource({topicId, resourceId, url, votes, abstract, name, voteUp, voteDown, isCommenting, toggleComment, comments}) {
-  var options = {  
-    weekday: "long", year: "numeric", month: "short",  
-    day: "numeric", hour: "2-digit", minute: "2-digit"  
-  };  
+export default function Resource({topicId, resourceId, url, votes, abstract, name, voteUp, voteDown, comments}) {
 
   return (<div>
     <div className="row">
@@ -26,22 +22,7 @@ export default function Resource({topicId, resourceId, url, votes, abstract, nam
       <div className="col-sm-11">
         <a className="font-weight-bold" href={url}>{name}</a>
         <div className="mb-5">{abstract}</div>
-        <ul className="list-group list-group-flush">
-          { comments.map(c => 
-            <li className="list-group-item bg-light">
-              <span className="fa fa-comment mr-2" /> {c.text}
-              <div className="font-italic">
-                {c.user.name} on {(new Date(c.created_at.date)).toLocaleTimeString("en-us", options)}
-              </div>
-            </li>
-            ) }
-          <li className="list-group-item">
-            { isCommenting ? <CommentForm resourceId={resourceId} /> :
-            <a href="#comment" className="text-secondary" onClick={() => toggleComment(resourceId)}>
-              Add a comment
-            </a>}
-          </li>
-        </ul>
+        <CommentList resourceId={resourceId} comments={comments} />
       </div>
     </div>
   </div>);

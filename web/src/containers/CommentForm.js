@@ -19,7 +19,11 @@ const mapDispatchToProps = dispatch => ({
     event.preventDefault();
     dispatch(forms.loading(FORM_NAME, true));
     api.commentCreate({ resource_id, text })
-      .then( json => alert(json) )
+      .then( json => {
+        dispatch(forms.clear(FORM_NAME));
+        dispatch(forms.toggle('comment', null));
+        dispatch(topics.addComment(resource_id, json));
+      })
       .catch( err => alert(err.error) )
       .then( l => dispatch(forms.loading(FORM_NAME, false)));
   }

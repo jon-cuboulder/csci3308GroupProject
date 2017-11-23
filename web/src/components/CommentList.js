@@ -1,0 +1,26 @@
+import React from 'react';
+import CommentForm from '../containers/CommentForm';
+
+export default function CommentList({ comments, isCommenting, resourceId, toggle }) {
+  var options = {  
+    weekday: "long", year: "numeric", month: "short",  
+    day: "numeric", hour: "2-digit", minute: "2-digit"  
+  };  
+
+  return (<ul className="list-group list-group-flush">
+    { comments.map(c => 
+      <li className="list-group-item bg-light" key={c.id}>
+        <span className="fa fa-comment mr-2" /> {c.text}
+        <div className="font-italic">
+          {c.user.name} on {(new Date(c.created_at.date)).toLocaleTimeString("en-us", options)}
+        </div>
+      </li>
+    ) }
+    <li className="list-group-item">
+      { isCommenting ? <CommentForm resourceId={resourceId} /> :
+          <a href="#comment" className="text-secondary" onClick={() => toggle(resourceId)}>
+            Add a comment
+          </a>}
+        </li>
+      </ul>);
+}

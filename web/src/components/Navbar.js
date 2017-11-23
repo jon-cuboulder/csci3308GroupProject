@@ -25,7 +25,7 @@ export default function Navbar({ email, signout }) {
   }
 
   return (
-    <nav className="navbar navbar-expand navbar-dark" style={{"background-color": "#0D47A1"}}>
+    <nav className="navbar navbar-expand navbar-dark" style={{"backgroundColor": "#0D47A1"}}>
       <Link className="navbar-brand" to="/">
         <span className="fa fa-bold"></span>
         old

@@ -1,9 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function ResourceForm({ topicID, handleSubmit, handleChange, form, auth, isLoading, toggle }) {
   if (!auth) {
     console.log(auth);
-    return <div>Please login to add a resource</div>;
+    return (<div className="text-center mt-4">
+      Please
+      <Link className="ml-3 mr-3 btn btn-outline-dark" to="/signin">
+        Sign In
+      </Link>
+      to add a resource.
+    </div>);
   }
 
   return (

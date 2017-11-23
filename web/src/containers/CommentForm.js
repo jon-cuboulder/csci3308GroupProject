@@ -8,7 +8,8 @@ const FORM_NAME = 'resources-comment';
 
 const mapStateToProps = (state, ownProps) => ({
   comment: state.form[FORM_NAME].comment,
-  isLoading: state.form[FORM_NAME]._loading
+  isLoading: state.form[FORM_NAME]._loading,
+  isAuthed: !!state.auth
 });
 
 const mapDispatchToProps = dispatch => ({

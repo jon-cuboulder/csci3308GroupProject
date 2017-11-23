@@ -20,6 +20,7 @@ const mapDispatchToProps = dispatch => ({
       .then( json => {
         console.log('Resource Created', json);
         dispatch(forms.clear(FORM_NAME));
+        dispatch(forms.toggle('showResourceForm', false));
         dispatch(topics.addResource(topic_id, json));
       })
       .catch( err => {

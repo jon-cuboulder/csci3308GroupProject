@@ -1,7 +1,23 @@
 import React from 'react';
 
+function CommentForm({ toggleComment }) {
+  return (<form onSubmit={(e) => e.preventDefault()}>
+    <textarea className="form-control" placeholder="Comment..." autoFocus />
+    <div className="mt-3">
+      <button type="button" className="btn btn-outline-secondary mr-3"
+        onClick={() => toggleComment(null)}>
+        Cancel
+      </button>
+      <button type="submit" className="btn btn-success">
+        <span className="fa fa-plus mr-2"/>
+        Add Comment
+      </button>
+    </div>
+  </form>);
+}
+
 // Resource list item in the topic view.
-export default function Resource({topicId, resourceId, url, votes, abstract, name, voteUp, voteDown}) {
+export default function Resource({topicId, resourceId, url, votes, abstract, name, voteUp, voteDown, isCommenting, toggleComment}) {
   return (<div>
     <div className="row">
       <div className="col-sm">
@@ -22,10 +38,10 @@ export default function Resource({topicId, resourceId, url, votes, abstract, nam
         <div className="mb-5">{abstract}</div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
-            <a href="#comment" className="text-secondary">
-              <span className="fa fa-comment mr-3"></span>
-              Add Comment
-            </a>
+            { isCommenting ? <CommentForm toggleComment={toggleComment} /> :
+            <a href="#comment" className="text-secondary" onClick={() => toggleComment(resourceId)}>
+              Add a comment
+            </a>}
           </li>
         </ul>
       </div>

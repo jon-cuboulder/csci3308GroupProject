@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Comment as CommentResource;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use JWTAuth;
@@ -32,7 +33,15 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = JWTAuth::parseToken()->authenticate();
+
+        $comment = new Comment;
+        $comment->user_id = $user->id;
+        $comment->resource_id = $request->input('resource_id');
+        $comment->text = $request->input('text');
+        $comment->save();
+
+        return response()->json(new CommentResource($comment));
     }
 
     /**

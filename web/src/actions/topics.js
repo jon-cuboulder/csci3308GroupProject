@@ -1,6 +1,7 @@
 /*
  * Action Types
  */
+export const COMMENT_ADD = 'COMMENT_ADD';
 export const RESOURCE_ADD = 'RESOURCE_ADD';
 export const RESOURCE_VOTE_UP = 'RESOURCE_VOTE_UP';
 export const RESOURCE_VOTE_DOWN = 'RESOURCE_VOTE_DOWN';
@@ -9,6 +10,14 @@ export const TOPIC_LOAD = 'TOPIC_LOAD';
 /*
  * Action Creators
  */
+export function addComment(resourceId, payload) {
+  return {
+    type: COMMENT_ADD,
+    resourceId,
+    payload
+  };
+}
+
 export function addResource(topicId, payload) {
   return {
     type: RESOURCE_ADD,

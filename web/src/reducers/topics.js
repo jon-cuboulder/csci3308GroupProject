@@ -1,14 +1,38 @@
 import { combineReducers } from 'redux';
 import {
-  TOPIC_LOAD,
+  COMMENT_ADD,
   RESOURCE_ADD,
   RESOURCE_VOTE_UP,
-  RESOURCE_VOTE_DOWN
+  RESOURCE_VOTE_DOWN,
+  TOPIC_LOAD
 } from '../actions/topics';
 
 function byIdReducer(state={}, action) {
   var resources, topic;
+  const deepCopy = obj => JSON.parse(JSON.stringify(obj));
+
   switch (action.type) {
+    case COMMENT_ADD:
+      for (let topicId of Object.keys(state)) {
+        // only have the resourceId, need to find the topic
+        resources = deepCopy(state[topicId].resources || []);
+        for (let r of resources) {
+          if (r.id === action.resourceId) {
+            topic = deepCopy(state[topicId]);
+            r.comments = r.comments || [];
+            r.comments.push(action.payload);
+            break;
+          }
+
+        }
+
+        if(topic) {
+          topic.resources = resources;
+          return Object.assign({}, state, {[topic.id]: topic});
+        }
+      }
+
+      return state;
     case TOPIC_LOAD:
       return Object.assign({}, state, { [action.payload.id]: action.payload });
     case RESOURCE_ADD:

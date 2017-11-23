@@ -5,9 +5,9 @@ export default function SearchResults({ results }) {
   let search = <div />;
   if(results.length) {
     search = (<div>
-      <h2>Search Results</h2>
-      <ul>
-        {results.map(result => <li key={result.id}>
+      <h4>Search Results</h4>
+      <ul className="list-group list-group-flush">
+        {results.map(result => <li className="list-group-item" key={result.id}>
           <Link to={`/topics/${result.id}`}>{result.name}</Link>
         </li>)}
       </ul>

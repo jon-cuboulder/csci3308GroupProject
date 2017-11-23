@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ResourceForm({ topicID, handleSubmit, handleChange, form, auth, isLoading }) {
+export default function ResourceForm({ topicID, handleSubmit, handleChange, form, auth, isLoading, toggle }) {
   if (!auth) {
     console.log(auth);
     return <div>Please login to add a resource</div>;
@@ -11,7 +11,7 @@ export default function ResourceForm({ topicID, handleSubmit, handleChange, form
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input type="text" className="form-control" value={form.name}
-          onChange={handleChange('name')}
+          onChange={handleChange('name')} autoFocus
           id="name" placeholder="Resource name" />
       </div>
       <div className="form-group">
@@ -26,9 +26,16 @@ export default function ResourceForm({ topicID, handleSubmit, handleChange, form
           onChange={handleChange('abstract')}
           id="abstract" placeholder="Resource abstract" />
       </div>
-      <button type="submit" className="btn btn-primary" disabled={isLoading}>
-        Add Resource
-      </button>
+      <div>
+        <button type="button" className="btn btn-outline-secondary mr-3"
+          onClick={() => toggle(false)}>
+          Cancel
+        </button>
+        <button type="submit" className="btn btn-success" disabled={isLoading}>
+          <span className="fa fa-plus mr-2" />
+          Add Resource
+        </button>
+      </div>
     </form>
   );
 }

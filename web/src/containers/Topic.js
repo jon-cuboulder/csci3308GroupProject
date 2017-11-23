@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Topic from '../components/Topic';
 import * as api from '../api';
 import * as topics from '../actions/topics';
+import * as forms from '../actions/forms';
 
 const mapStateToProps = (state, ownProps) => {
   let id = ownProps.match.params.id;
@@ -10,8 +11,9 @@ const mapStateToProps = (state, ownProps) => {
   const isLoaded = !!topic.id;
   const name = topic.name || '';
   const resources = topic.resources || [];
+  const isAdding = !!state.form.toggles.showResourceForm;
 
-  return { id, name, isLoaded, resources };
+  return { id, name, isLoaded, resources, isAdding };
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -19,7 +21,8 @@ const mapDispatchToProps = dispatch => ({
     api.topicGet(id)
       .then(json => dispatch(topics.load(json)))
       .catch(err => alert(err.error));
-  }
+  },
+  toggle: val => dispatch(forms.toggle('showResourceForm', val)) 
 });
 
 class TopicFetch extends React.Component {

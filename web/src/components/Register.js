@@ -45,7 +45,7 @@ export default function Register({errEmail, errName, errPass, handleSubmit, hand
           <div className="form-group">
             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
               <div className="input-group-addon" style={{width: '2.6rem'}}><i className="fa fa-at"></i></div>
-              <input type="text" className="form-control" onChange={handleChange('email')}
+              <input type="email" className="form-control" onChange={handleChange('email')}
                 required placeholder="you@example.com" />
             </div>
           </div>

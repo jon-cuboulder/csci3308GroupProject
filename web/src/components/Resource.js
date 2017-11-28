@@ -2,19 +2,19 @@ import React from 'react';
 import CommentList from '../containers/CommentList';
 
 // Resource list item in the topic view.
-export default function Resource({topicId, resourceId, url, votes, abstract, name, voteUp, voteDown, comments}) {
+export default function Resource({topicId, resourceId, url, votes, abstract, name, voteUp, voteDown, comments, isAuthed}) {
 
   return (<div>
     <div className="row">
       <div className="col-sm">
         <div className="text-center">
-          <button type="button" className="btn btn-light" onClick={() => voteUp(topicId, resourceId)}>
+          <button type="button" className="btn btn-light" onClick={() => voteUp(topicId, resourceId)} disabled={!isAuthed}>
             <span className="fa fa-arrow-up" ></span>
           </button>
         </div>
         <div className="text-center">{votes}</div>
         <div className="text-center">
-          <button type="button" className="btn btn-light" onClick={() => voteDown(topicId, resourceId)}>
+          <button type="button" className="btn btn-light" onClick={() => voteDown(topicId, resourceId)} disabled={!isAuthed}>
             <span className="fa fa-arrow-down" ></span>
           </button>
         </div>

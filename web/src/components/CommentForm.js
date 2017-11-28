@@ -14,7 +14,7 @@ export default function CommentForm({ cancel, change, comment, resourceId, submi
   }
 
   return (<form onSubmit={submit(resourceId, comment)}>
-    <textarea className="form-control" placeholder="Comment..." autoFocus 
+    <textarea required className="form-control" placeholder="Comment..." autoFocus 
     value={comment} onChange={change('comment')}/>
     <div className="mt-3">
       <button type="button" className="btn btn-outline-secondary mr-3"

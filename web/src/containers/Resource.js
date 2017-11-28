@@ -18,6 +18,7 @@ const mapStateToProps = (state, ownProps) => {
     abstract: resource.abstract,
     name: resource.name,
     comments: resource.comments || [],
+    isAuthed: !!state.auth
   };
 };
 

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\User;
+use App\Cors;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,10 @@ use App\User;
 
 // Handle preflight OPTIONS requests for CORS
 Route::options('{all}', function (Request $request, Response $response) {
-  $response->header('Access-Control-Allow-Origin', '*');
-  $response->header('Access-Control-Allow-Headers', 'origin, content-type, accept, authorization');
-  $response->header('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PATCH, DELETE');
-  return $response;
+    $response->header('Access-Control-Allow-Origin', Cors::$origin);
+    $response->header('Access-Control-Allow-Headers', Cors::$headers);
+    $response->header('Access-Control-Allow-Methods', Cors::$methods);
+    return $response;
 })->where('all', '.*');
 
 // https://github.com/tymondesigns/jwt-auth/wiki/Creating-Tokens

@@ -1,15 +1,19 @@
-import { SEARCH_SUBMIT, SEARCH_RESULTS } from '../actions/search';
+import * as search from '../actions/search';
 
 const initialState = {
-  results: []
+  results: [],
+  qry: '',
+  hasSubmit: false
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case SEARCH_SUBMIT:
+    case search.SEARCH_CLEAR:
+      return initialState;
+    case search.SEARCH_SUBMIT:
       return Object.assign({}, state, {qry: ""});
-    case SEARCH_RESULTS:
-      return Object.assign({}, state, {results: action.payload});
+    case search.SEARCH_RESULTS:
+      return Object.assign({}, state, {results: action.payload, hasSubmit: true});
     default:
       return state;
   }

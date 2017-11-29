@@ -4,7 +4,8 @@ import SearchResults from '../components/SearchResults';
 import { clear as searchClear } from '../actions/search';
 
 const mapStateToProps = (state, ownProps) => ({
-  results: state.search.results
+  results: state.search.results,
+  hasSubmit: state.search.hasSubmit
 });
 
 const mapDispatchToProps = dispatch => ({

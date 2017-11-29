@@ -2,7 +2,8 @@ import * as search from '../actions/search';
 
 const initialState = {
   results: [],
-  qry: ''
+  qry: '',
+  hasSubmit: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -12,7 +13,7 @@ export default function reducer(state = initialState, action) {
     case search.SEARCH_SUBMIT:
       return Object.assign({}, state, {qry: ""});
     case search.SEARCH_RESULTS:
-      return Object.assign({}, state, {results: action.payload});
+      return Object.assign({}, state, {results: action.payload, hasSubmit: true});
     default:
       return state;
   }

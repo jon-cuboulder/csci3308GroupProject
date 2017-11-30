@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Cors as Allowed;
 
 class Cors
 {
@@ -20,8 +21,8 @@ class Cors
   public function handle($request, Closure $next)
   {
     return $next($request)
-      ->header('Access-Control-Allow-Origin', '*')
-      ->header('Access-Control-Allow-Headers', 'origin, content-type, accept, Authorization')
-      ->header('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PATCH, DELETE');
+      ->header('Access-Control-Allow-Origin', Allowed::$origin)
+      ->header('Access-Control-Allow-Headers', Allowed::$headers)
+      ->header('Access-Control-Allow-Methods', Allowed::$methods);
   }
 }

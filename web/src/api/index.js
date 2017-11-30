@@ -59,6 +59,17 @@ const post = (url, payload) => {
   return fetchJSON(url, options);
 };
 
+const patch = (url, payload) => {
+  url = apiUrl(url);
+  const options = {
+    method: 'PATCH',
+    body: JSON.stringify(payload)
+  };
+
+  return fetchJSON(url, options);
+};
+
+
 export function commentCreate(payload) {
   return post('/comments', payload);
 }
@@ -119,4 +130,13 @@ export function voteDown(resource_id) {
   };
 
   return post('votes', payload);
+}
+
+export function editResourceName(resource_id, value) {
+  const payload = {
+    resource_id,
+    name: value
+  };
+
+  return patch(`resources/${resource_id}`, payload)
 }

@@ -45,8 +45,12 @@ class resourceController extends Controller
 
 
     // PUT/PATCH /resource/{id}
-    public function update($id){
-
+    public function update($id, Request $request){
+        //worry about permissions
+        $resource = Resource::find($id);
+        $resource->name = $request->input('name');
+        $resource->save();
+        return response()->json(new ResourceCollection($resource));
     }
 
     // DELETE /resource/{resource}

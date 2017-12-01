@@ -23,10 +23,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   del: (topicId, resourceId) => {
-      api.destroy(resourceId)
+    api.getResource(resourceId)
       .then(json => {
         if(json.id) {
-          alert("Deleted.")
+          window.alert("hello")
         }
       })
       .catch(err => alert(err.error));

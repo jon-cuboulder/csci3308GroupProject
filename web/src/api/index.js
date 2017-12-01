@@ -129,7 +129,7 @@ export function voteDown(resource_id) {
 }
 
 // todo: create a delete resource call
-export function destroy(resource_id)
+export function getResource(resource_id)
 {
-  return del('id');
+  return del(`/api/resources/${resource_id}`);
 }

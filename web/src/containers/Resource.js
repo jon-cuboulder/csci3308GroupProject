@@ -22,6 +22,15 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  del: (topicId, resourceId) => {
+      api.destroy(resourceId)
+      .then(json => {
+        if(json.id) {
+          alert("Deleted.")
+        }
+      })
+      .catch(err => alert(err.error));
+  },
   voteDown: (id, resourceId) => {
     api.voteDown(resourceId)
       .then(json => {

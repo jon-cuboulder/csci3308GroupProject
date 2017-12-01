@@ -47,7 +47,7 @@ const fetchJSON = (url, options) => {
     });
 }
 
-const get = (url, queryParams) => fetchJSON(apiUrl(url, queryParams), null)
+const get = (url, queryParams) => fetchJSON(apiUrl(url, queryParams), null);
 
 const post = (url, payload) => {
   url = apiUrl(url);
@@ -57,6 +57,13 @@ const post = (url, payload) => {
   };
 
   return fetchJSON(url, options);
+};
+
+const del = (url) => {
+  const options = {
+    method: 'DELETE'
+  };
+  return fetchJSON(apiUrl(url), options);
 };
 
 export function commentCreate(payload) {
@@ -119,4 +126,10 @@ export function voteDown(resource_id) {
   };
 
   return post('votes', payload);
+}
+
+// todo: create a delete resource call
+export function destroy(resource_id)
+{
+  return del('id');
 }

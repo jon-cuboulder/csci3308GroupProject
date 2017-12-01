@@ -14,7 +14,7 @@ class resourceController extends Controller
         $this->middleware('jwt.auth');
     }
 
-    // GET /resource
+    // GET /api/resource
     // returns list of all entries in table
     public function index(){
         return response()->json(Resource::all());
@@ -49,10 +49,23 @@ class resourceController extends Controller
 
     }
 
-    // DELETE /resource/{resource}
+    // DELETE /api/resource/{id}
     // delete a resource
     public function destroy($id){
         $resource = Resource::find($id);
-        $resource->delete();
+        $user = JWTAuth::parseToken()->authenticate();
+        if($user == $resource -> user_id);
+        {
+            $resource->delete();
+        }
+        else
+        {
+            throw new error('Error 403');
+        }
+        // todo: make sure user can delete this resource -- if they can't respond 403
+        
+
+        // todo: figure out how to respond 204 (success but no body) when successful
+        return response();
     }
 }

@@ -57,6 +57,18 @@ class resourceController extends Controller
     // delete a resource
     public function destroy($id){
         $resource = Resource::find($id);
-        $resource->delete();
+        $user = JWTAuth::parseToken()->authenticate();
+        if($user-> id == $resource -> user_id)
+        {
+            $resource->DELETE();
+            return response()->json(['message' => 'Success',],204);
+        }
+        else
+        {
+            return response()->json(['message' => 'Forbidden',],403);
+        }
+        // todo: make sure user can delete this resource -- if they can't respond 403
+        // todo: figure out how to respond 204 (success but no body) when successful
+        return response()->json(['message' => 'Success',],204);
     }
 }

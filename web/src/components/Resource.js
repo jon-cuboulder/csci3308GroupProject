@@ -4,20 +4,25 @@ import ResourceEditForm from '../containers/ResourceEditForm';
 
 
 // Resource list item in the topic view.
-export default function Resource({topicId, resourceId, url, votes, abstract, name, voteUp, voteDown, comments, isAuthed, toggleEdit, isEditing}) {
+export default function Resource({topicId, resourceId, url, votes, abstract, name, voteUp, voteDown, comments, isAuthed, toggleEdit, isEditing, delResource}) {
 
   return (<div>
     <div className="row">
-      <div className="col-sm">
-        <div className="text-center">
-          <button type="button" className="btn btn-light" onClick={() => voteUp(topicId, resourceId)} disabled={!isAuthed}>
+      <div className="col-sm text-center">
+        <div>
+          <button type="button" className="btn btn-light" onClick={() => voteUp(topicId, resourceId)}>
             <span className="fa fa-arrow-up" ></span>
           </button>
         </div>
-        <div className="text-center">{votes}</div>
+        <div>{votes}</div>
         <div className="text-center">
-          <button type="button" className="btn btn-light" onClick={() => voteDown(topicId, resourceId)} disabled={!isAuthed}>
+          <button type="button" className="btn btn-light" onClick={() => voteDown(topicId, resourceId)}>
             <span className="fa fa-arrow-down" ></span>
+          </button>
+        </div>
+            <div>
+          <button type="button" className="btn btn-link" onClick={() => delResource(topicId, resourceId)}>
+              delete
           </button>
         </div>
       </div>

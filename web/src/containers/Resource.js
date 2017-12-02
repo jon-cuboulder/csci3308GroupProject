@@ -25,6 +25,10 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
+    delResource: (topicId, resourceId) => {
+    api.getResource(resourceId)
+    window.location.reload()
+  },
   toggleEdit: (id, resourceId) => dispatch(topics.toggleEdit(id, resourceId)),
   voteDown: (id, resourceId) => {
     api.voteDown(resourceId)

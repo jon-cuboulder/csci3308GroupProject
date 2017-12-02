@@ -18,3 +18,7 @@ Automated Tests: Links to the tools used: https://facebook.github.io/jest/docs/e
 https://phpunit.de/ 
 to run api tests, cd api and vendor/bin/phpuni
 For javascript tests, cd web and yarn test
+
+![First test](https://github.com/Will-Shanks/csci3308GroupProject/blob/master/milestone5-img1.png)
+
+![Second test](https://github.com/Will-Shanks/csci3308GroupProject/blob/master/milestone5-img2.png)

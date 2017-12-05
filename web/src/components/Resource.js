@@ -21,8 +21,8 @@ export default function Resource({topicId, resourceId, url, votes, abstract, nam
           </button>
         </div>
             <div>
-          <button type="button" className="btn btn-link" onClick={() => delResource(topicId, resourceId)}>
-              delete
+          <button type="button" className="btn btn-link " onClick={() => delResource(topicId, resourceId)}>
+            <span className="fa fa-trash-o fa-lg" style={{color:"black",cursor:"pointer"}} ></span>
           </button>
         </div>
       </div>

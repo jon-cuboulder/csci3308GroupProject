@@ -59,6 +59,13 @@ const post = (url, payload) => {
   return fetchJSON(url, options);
 };
 
+const del = (url) => {
+  const options = {
+    method: 'DELETE'
+  };
+  return fetchJSON(apiUrl(url), options);
+};
+
 const patch = (url, payload) => {
   url = apiUrl(url);
   const options = {
@@ -139,4 +146,9 @@ export function editResourceName(resource_id, value) {
   };
 
   return patch(`resources/${resource_id}`, payload)
+}
+
+export function getResource(resource_id)
+{
+  return del(`/resources/${resource_id}`);
 }

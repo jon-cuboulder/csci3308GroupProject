@@ -36,6 +36,12 @@ const fetchJSON = (url, options) => {
         let err = {error: "Server Error"};
         throw err;
       }
+
+      if (resp.status === 204) {
+        // No body - but expects "json"
+        return {};
+      }
+
       return resp.json();
     })
     .then(json => {
@@ -63,6 +69,7 @@ const del = (url) => {
   const options = {
     method: 'DELETE'
   };
+
   return fetchJSON(apiUrl(url), options);
 };
 
@@ -145,10 +152,10 @@ export function editResourceName(resource_id, value) {
     name: value
   };
 
-  return patch(`resources/${resource_id}`, payload)
+  return patch(`resources/${resource_id}`, payload);
 }
 
-export function getResource(resource_id)
+export function delResource(resource_id)
 {
   return del(`/resources/${resource_id}`);
 }

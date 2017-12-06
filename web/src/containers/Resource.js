@@ -20,14 +20,16 @@ const mapStateToProps = (state, ownProps) => {
     comments: resource.comments || [],
     isAuthed: !!state.auth,
     isEditing: resource.$editing
-    /*todo add edit flag*/
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-    delResource: (topicId, resourceId) => {
-    api.getResource(resourceId)
-    window.location.reload()
+  delResource: (topicId, resourceId) => {
+    api.delResource(resourceId)
+      .then( _ => {
+        dispatch(topics.delResource(topicId, resourceId));
+      })
+      .catch( err => alert(err.error) );
   },
   toggleEdit: (id, resourceId) => dispatch(topics.toggleEdit(id, resourceId)),
   voteDown: (id, resourceId) => {

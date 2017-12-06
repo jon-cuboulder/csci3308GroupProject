@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import {
   COMMENT_ADD,
   RESOURCE_ADD,
+  RESOURCE_DEL,
   RESOURCE_VOTE_UP,
   RESOURCE_VOTE_DOWN,
   TOPIC_LOAD,
@@ -62,6 +63,12 @@ function byIdReducer(state={}, action) {
     case RESOURCE_ADD:
       resources = state[action.topicId].resources || [];
       topic = Object.assign({}, state[action.topicId], { resources: [...resources, action.payload] } );
+
+      return Object.assign({}, state, { [action.topicId]: topic });
+    case RESOURCE_DEL:
+      topic = deepCopy(state[action.topicId]);
+      resources = topic.resources || [];
+      topic.resources = resources.filter( r => r.id != action.resourceId);
 
       return Object.assign({}, state, { [action.topicId]: topic });
     case RESOURCE_VOTE_DOWN:

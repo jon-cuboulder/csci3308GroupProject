@@ -22,7 +22,7 @@ export default function ResourceForm({ topicID, handleSubmit, handleChange, form
       </div>
       <div className="form-group">
         <label htmlFor="url">URL</label>
-        <input type="text" className="form-control" value={form.url}
+        <input type="url" className="form-control" value={form.url}
           onChange={handleChange('url')}
           id="url" required placeholder="Resource url" />
       </div>

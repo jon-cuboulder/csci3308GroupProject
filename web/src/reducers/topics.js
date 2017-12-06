@@ -68,7 +68,7 @@ function byIdReducer(state={}, action) {
     case RESOURCE_DEL:
       topic = deepCopy(state[action.topicId]);
       resources = topic.resources || [];
-      topic.resources = resources.filter( r => r.id != action.resourceId);
+      topic.resources = resources.filter( r => r.id !== action.resourceId);
 
       return Object.assign({}, state, { [action.topicId]: topic });
     case RESOURCE_VOTE_DOWN:

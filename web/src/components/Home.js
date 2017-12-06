@@ -2,7 +2,7 @@ import React from 'react';
 import Results from '../containers/SearchResults';
 import { Link } from 'react-router-dom';
 
-export default function Home({ qry, handleSubmit, handleChange, isLoading }) {
+export default function Home({ qry, handleSubmit, handleChange, isLoading, isAuthed }) {
   return (<div className="container-fluid">
     <form onSubmit={handleSubmit(qry)}>
       <div className="row mt-5">
@@ -18,11 +18,13 @@ export default function Home({ qry, handleSubmit, handleChange, isLoading }) {
           </div>
         </div>
       </div>
-      <div className="text-center mt-3">
-        <Link className="btn btn-outline-secondary" to="/topics/create">
-          New Topic
-        </Link>
-      </div>
+      { isAuthed ?
+          <div className="text-center mt-3">
+            <Link className="btn btn-outline-secondary" to="/topics/create">
+              New Topic
+            </Link>
+          </div>
+          : <div /> }
     </form>
     <Results />
   </div>);

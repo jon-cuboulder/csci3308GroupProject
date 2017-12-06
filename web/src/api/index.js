@@ -1,5 +1,4 @@
-// TODO: remove hard coded host
-const API_HOST = 'http://localhost';
+const API_HOST = process.env.REACT_APP_API_URL;
 
 // Build the full url for the api call.  If there is any data to include in the 
 // query string, properly encode it.

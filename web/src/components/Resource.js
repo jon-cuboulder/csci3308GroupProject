@@ -12,10 +12,10 @@ function ResourceActionBar({ topicId, resourceId, voteUp, voteDown, delResource,
       <span className="fa fa-arrow-down" />
     </button>
     <div className="mt-3">
-      <button type ="button" className="btn btn-link text-dark mr-2" onClick={() => toggleEdit(topicId, resourceId)} disabled={!isAuthed} style={{cursor: 'pointer'}}>
+      <button type="button" className="btn btn-link text-dark mr-2" onClick={() => toggleEdit(topicId, resourceId)} disabled={!isAuthed}>
         <span className="fa fa-pencil fa-lg" />
       </button>
-      <button type="button" className="btn btn-link text-danger" onClick={() => delResource(topicId, resourceId)} disabled={!isAuthed} style={{cursor: 'pointer'}}>
+      <button type="button" className="btn btn-link text-danger" onClick={() => delResource(topicId, resourceId)} disabled={!isAuthed}>
         <span className="fa fa-trash-o fa-lg" />
       </button>
     </div>

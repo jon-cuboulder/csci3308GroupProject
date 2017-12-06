@@ -1,4 +1,4 @@
-source api/.env
+source .env
 
 checkIfEmpty() {
   # ${!1} is a variable variable
@@ -28,4 +28,4 @@ query3="GRANT ALL ON $db.* TO $user"
 
 echo "$query0;$query1;$query2;$query3;" | mysql -u $DB_ADMIN_USERNAME -p$DB_ADMIN_PASSWORD
 
-(cd api && php artisan migrate --seed)
+php artisan migrate --seed

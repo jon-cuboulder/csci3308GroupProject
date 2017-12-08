@@ -18,10 +18,20 @@ const mapStateToProps = (state, ownProps) => {
     abstract: resource.abstract,
     name: resource.name,
     comments: resource.comments || [],
+    isAuthed: !!state.auth,
+    isEditing: resource.$editing
   };
 };
 
 const mapDispatchToProps = dispatch => ({
+  delResource: (topicId, resourceId) => {
+    api.delResource(resourceId)
+      .then( _ => {
+        dispatch(topics.delResource(topicId, resourceId));
+      })
+      .catch( err => alert(err.error) );
+  },
+  toggleEdit: (id, resourceId) => dispatch(topics.toggleEdit(id, resourceId)),
   voteDown: (id, resourceId) => {
     api.voteDown(resourceId)
       .then(json => {

@@ -9,7 +9,8 @@ const FORM_NAME = 'topics-search';
 const mapStateToProps = (state) => ({
   isLoading: state.form[FORM_NAME]._loading,
   qry: state.form[FORM_NAME].qry,
-  results: state.search.results
+  results: state.search.results,
+  isAuthed: !!state.auth
 });
 
 const mapDispatchToProps = dispatch => ({

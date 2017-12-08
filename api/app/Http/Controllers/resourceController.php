@@ -45,14 +45,25 @@ class resourceController extends Controller
 
 
     // PUT/PATCH /resource/{id}
-    public function update($id){
-
+    public function update($id, Request $request){
+        //worry about permissions
+        $resource = Resource::find($id);
+        $resource->name = $request->input('name');
+        $resource->save();
+        return response()->json(new ResourceCollection($resource));
     }
 
     // DELETE /resource/{resource}
     // delete a resource
     public function destroy($id){
         $resource = Resource::find($id);
-        $resource->delete();
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if($user->id != $resource->user_id) {
+            return response()->json(['error' => 'Forbidden',],403);
+        }
+
+        $resource->DELETE();
+        return response()->json([],204);
     }
 }

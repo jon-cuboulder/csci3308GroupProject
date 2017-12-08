@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 export default function Profile({user}) {
   return (
@@ -15,7 +14,9 @@ export default function Profile({user}) {
               <span className="fa fa-thumbs-down" />
               :
               <span className="fa fa-thumbs-up" />}
-          <Link to={v.resource.url} className="ml-2">{v.resource.name}</Link>
+              <a href={v.resource.url} target="_blank" className="ml-2">
+                {v.resource.name}
+              </a>
         </li>)}
       </ul>
     </div>

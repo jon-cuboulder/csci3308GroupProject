@@ -1,6 +1,7 @@
 /*
  * Action Types
  */
+export const SEARCH_CLEAR = 'SEARCH_CLEAR';
 export const SEARCH_SUBMIT = 'SEARCH_SUBMIT';
 export const SEARCH_RESULTS = 'SEARCH_RESULTS';
 
@@ -15,4 +16,8 @@ export const submit = (qry) => ({
 export const results = (payload) => ({
   type: SEARCH_RESULTS,
   payload
+});
+
+export const clear = () => ({
+  type: SEARCH_CLEAR
 });

@@ -1,5 +1,4 @@
-// TODO: remove hard coded host
-const API_HOST = 'http://localhost';
+const API_HOST = process.env.REACT_APP_API_URL;
 
 // Build the full url for the api call.  If there is any data to include in the 
 // query string, properly encode it.
@@ -36,6 +35,12 @@ const fetchJSON = (url, options) => {
         let err = {error: "Server Error"};
         throw err;
       }
+
+      if (resp.status === 204) {
+        // No body - but expects "json"
+        return {};
+      }
+
       return resp.json();
     })
     .then(json => {
@@ -58,6 +63,25 @@ const post = (url, payload) => {
 
   return fetchJSON(url, options);
 };
+
+const del = (url) => {
+  const options = {
+    method: 'DELETE'
+  };
+
+  return fetchJSON(apiUrl(url), options);
+};
+
+const patch = (url, payload) => {
+  url = apiUrl(url);
+  const options = {
+    method: 'PATCH',
+    body: JSON.stringify(payload)
+  };
+
+  return fetchJSON(url, options);
+};
+
 
 export function commentCreate(payload) {
   return post('/comments', payload);
@@ -119,4 +143,18 @@ export function voteDown(resource_id) {
   };
 
   return post('votes', payload);
+}
+
+export function editResourceName(resource_id, value) {
+  const payload = {
+    resource_id,
+    name: value
+  };
+
+  return patch(`resources/${resource_id}`, payload);
+}
+
+export function delResource(resource_id)
+{
+  return del(`/resources/${resource_id}`);
 }

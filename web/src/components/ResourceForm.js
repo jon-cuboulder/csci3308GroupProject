@@ -18,19 +18,19 @@ export default function ResourceForm({ topicID, handleSubmit, handleChange, form
         <label htmlFor="name">Name</label>
         <input type="text" className="form-control" value={form.name}
           onChange={handleChange('name')} autoFocus
-          id="name" placeholder="Resource name" />
+          id="name" required placeholder="Resource name" />
       </div>
       <div className="form-group">
         <label htmlFor="url">URL</label>
-        <input type="text" className="form-control" value={form.url}
+        <input type="url" className="form-control" value={form.url}
           onChange={handleChange('url')}
-          id="url" placeholder="Resource url" />
+          id="url" required placeholder="Resource url" />
       </div>
       <div className="form-group">
         <label htmlFor="abstract">Abstract</label>
         <textarea className="form-control" value={form.abstract}
           onChange={handleChange('abstract')}
-          id="abstract" placeholder="Resource abstract" />
+          id="abstract" required placeholder="Resource abstract" />
       </div>
       <div>
         <button type="button" className="btn btn-outline-secondary mr-3"

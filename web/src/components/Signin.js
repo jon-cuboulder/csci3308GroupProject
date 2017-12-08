@@ -26,7 +26,7 @@ export default function Signin({handleSubmit, handleChange, email, pass, isAuthe
           <div className="form-group">
             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
               <div className="input-group-addon" style={{width: '2.6rem'}}><i className="fa fa-at"></i></div>
-              <input type="text" className="form-control" value={email}
+              <input type="email" className="form-control" value={email} required
                 onChange={handleChange('email')} placeholder="you@example.com" />
             </div>
           </div>
@@ -40,7 +40,7 @@ export default function Signin({handleSubmit, handleChange, email, pass, isAuthe
           <div className="form-group has-danger">
             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
               <div className="input-group-addon" style={{width: "2.6rem"}}><i className="fa fa-key"></i></div>
-              <input type="password" className="form-control" onChange={handleChange('pass')}
+              <input type="password" className="form-control" required onChange={handleChange('pass')}
                 placeholder="Password" id="password" value={pass} />
             </div>
           </div>

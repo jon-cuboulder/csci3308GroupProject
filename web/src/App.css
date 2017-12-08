@@ -4,3 +4,11 @@
     text-align: right;
   }
 }
+
+.btn {
+  cursor: pointer;
+}
+
+.btn:disabled {
+  cursor: default;
+}

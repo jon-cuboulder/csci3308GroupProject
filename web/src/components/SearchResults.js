@@ -11,7 +11,7 @@ export default function SearchResults({ results, clearSearch, hasSubmit }) {
     return <h4>No results found</h4>;
   }
 
-  return (<div>
+  return (<div className="search_results_bg">
     <h4>Search Results</h4>
     <ul className="list-group list-group-flush">
       {results.map(result => <li className="list-group-item" key={result.id}>

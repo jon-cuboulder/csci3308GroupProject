@@ -3,7 +3,7 @@ import Results from '../containers/SearchResults';
 import { Link } from 'react-router-dom';
 
 export default function Home({ qry, handleSubmit, handleChange, isLoading, isAuthed }) {
-  return (<div className="container-fluid">
+  return (<div className="container-fluid home_bg">
     <form onSubmit={handleSubmit(qry)}>
       <div className="row mt-5">
         <div className="col-lg-6 offset-lg-3">
@@ -11,7 +11,7 @@ export default function Home({ qry, handleSubmit, handleChange, isLoading, isAut
             <input type="text" className="form-control" onChange={handleChange('qry')}
               placeholder="I want to learn about ..." value={qry} autoFocus={true} />
             <div className="input-group-btn">
-              <button type="submit" className="btn btn-primary" disabled={isLoading}>
+              <button type="submit" className="btn btn-primary" disabled={isLoading} style={{"backgroundColor": "#1fa3d1"}}>
                 Search
               </button>
             </div>

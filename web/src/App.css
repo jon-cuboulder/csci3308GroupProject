@@ -12,3 +12,34 @@
 .btn:disabled {
   cursor: default;
 }
+
+.home_bg{
+	position: absolute;
+    top: 11%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+	background-image: url("background2.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container-fluid {
+	background-color: #f2f4f4;
+}
+.logo {
+	height: 100%;
+	right: 0;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    background-image: url("UrnLogo.jpg");
+    
+}
+body {
+	background-color: #f2f4f4;
+}
+h2 {
+	padding-top: 3%;
+}

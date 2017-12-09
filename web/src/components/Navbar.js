@@ -20,7 +20,9 @@ export default function Navbar({ email, signout }) {
     links = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <a className="nav-link" onClick={signout} href="#signout">{email}</a>
+          <button type="button" className="btn btn-link nav-link" onClick={signout}>
+            {email}
+          </button>
         </li>
       </ul>);
   }

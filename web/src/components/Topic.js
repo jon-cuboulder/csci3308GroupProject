@@ -19,10 +19,10 @@ export default function Topic({ id, name, resources, vote, isAdding, toggle }) {
           <ResourceForm topicID={id} toggle={toggle} />
           :
           <div className="text-center mt-3">
-            <a href="#add-resource" className="text-secondary"
+            <button type="button" className="btn btn-link text-secondary"
               onClick={() => toggle(true)}>
               Add a resource
-            </a>
+            </button>
           </div>
       }
     </div>

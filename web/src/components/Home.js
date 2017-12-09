@@ -20,7 +20,7 @@ export default function Home({ qry, handleSubmit, handleChange, isLoading, isAut
       </div>
       { isAuthed ?
           <div className="text-center mt-3">
-            <Link className="btn btn-outline-secondary" to="/topics/create">
+            <Link className="btn btn-outline-secondary topics" to="/topics/create">
               New Topic
             </Link>
           </div>

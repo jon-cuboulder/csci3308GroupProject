@@ -20,7 +20,9 @@ export default function Navbar({ email, signout }) {
     links = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <a className="nav-link" onClick={signout} href="#signout">{email}</a>
+          <button type="button" className="btn btn-link nav-link" onClick={signout}>
+            {email}
+          </button>
         </li>
       </ul>);
   }
@@ -28,7 +30,7 @@ export default function Navbar({ email, signout }) {
   return (
     <nav className="navbar navbar-expand navbar-dark" style={{"backgroundColor": "#1fa3d1"}}>
       <Link className="navbar-brand" to="/">
-          <img src={Urn} height="30" />
+          <img src={Urn} alt="The Learn Urn logo" height="30" />
           The Learn Urn
       </Link>
       <div className="navbar-collapse">

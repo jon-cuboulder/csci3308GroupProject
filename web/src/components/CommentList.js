@@ -23,9 +23,9 @@ export default function CommentList({ comments, isCommenting, resourceId, toggle
     ) }
     <li className="list-group-item">
       { isCommenting ? <CommentForm resourceId={resourceId} /> :
-          <a href="#comment" className="text-secondary" onClick={() => toggle(resourceId)}>
+          <button type="button" className="btn btn-link text-secondary" onClick={() => toggle(resourceId)}>
             Add a comment
-          </a>}
+          </button>}
         </li>
       </ul>);
 }

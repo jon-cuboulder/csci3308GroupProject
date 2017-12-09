@@ -33,6 +33,10 @@ class TopicFetch extends React.Component {
   }
 
   render() {
+    if(!this.props.isLoaded) {
+      return <h2>Loading...</h2>;
+    }
+
     return <Topic {...this.props} />;
   }
 }

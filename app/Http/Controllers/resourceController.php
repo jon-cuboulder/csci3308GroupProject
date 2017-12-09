@@ -46,8 +46,11 @@ class resourceController extends Controller
 
     // PUT/PATCH /resource/{id}
     public function update($id, Request $request){
-        //worry about permissions
+        $user = JWTAuth::parseToken()->authenticate();
         $resource = Resource::find($id);
+        if($user->id != $resource->user_id) {
+            return response()->json(['error' => 'Forbidden',],403);
+        }
         $resource->name = $request->input('name');
         $resource->save();
         return response()->json(new ResourceCollection($resource));

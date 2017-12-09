@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Urn from '../UrnLogo.jpg';
+import Urn from '../UrnLogo.png';
 
 function LoginLinks() {
   return (<ul className="navbar-nav ml-auto">
